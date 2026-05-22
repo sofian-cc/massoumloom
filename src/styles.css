@@ -1452,6 +1452,12 @@ ul, ol { list-style: none; }
   .ml-about-content { grid-template-columns: 1fr; }
   .ml-about-specs__inner { grid-template-columns: repeat(2, 1fr); }
 
+  /* About page section grids */
+  .ml-about-hero { grid-template-columns: 1fr !important; min-height: auto !important; }
+  .ml-about-beliefs { grid-template-columns: repeat(2, 1fr) !important; }
+  .ml-about-two-col { grid-template-columns: 1fr !important; }
+  .ml-about-process { grid-template-columns: repeat(3, 1fr) !important; }
+
   .ml-contact-page { grid-template-columns: 1fr; }
   .ml-contact-form-col { border-right: none; border-bottom: 1px solid var(--ml-border); }
 
@@ -1488,6 +1494,8 @@ ul, ol { list-style: none; }
   .ml-footer__bottom { flex-direction: column; text-align: center; }
 
   .ml-about-specs__inner { grid-template-columns: repeat(2, 1fr); }
+  .ml-about-beliefs { grid-template-columns: 1fr !important; }
+  .ml-about-process { grid-template-columns: repeat(2, 1fr) !important; }
 
   .ml-collection-page__header { padding-top: 2rem; }
 
@@ -1503,4 +1511,5 @@ ul, ol { list-style: none; }
 @media (max-width: 480px) {
   .ml-grid { grid-template-columns: 1fr; }
   .ml-promise__inner { grid-template-columns: 1fr 1fr; }
+  .ml-about-process { grid-template-columns: 1fr !important; }
 }

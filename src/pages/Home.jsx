@@ -114,7 +114,7 @@ export default function Home({ onCollection, onProduct, onAbout }) {
               ['71', 'Pieces in the collection'],
               ['80–120', 'Knots per sq. inch'],
               ['100%', 'Natural wool pile'],
-              ['∞', 'Worldwide delivery'],
+              ['6–10', 'Months lead time'],
             ].map(([n, l]) => (
               <div key={l}>
                 <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 3vw, 2.75rem)', fontWeight: 300, color: '#fff', lineHeight: 1, marginBottom: '0.4rem' }}>{n}</p>
@@ -139,8 +139,8 @@ export default function Home({ onCollection, onProduct, onAbout }) {
           </div>
           <div className="ml-story__image">
             <img
-              src="assets/hero copy.jpg"
-              alt="Master weaver at the loom"
+              src="assets/mayfair-after copy.jpg"
+              alt="Massoum Loom rug in a Mayfair home"
               loading="lazy"
             />
           </div>
@@ -213,7 +213,7 @@ export default function Home({ onCollection, onProduct, onAbout }) {
         <div className="ml-promise__inner">
           {[
             { icon: '◈', label: 'Made to Order', desc: 'Every piece is unique and available to commission' },
-            { icon: '◇', label: 'Free Delivery', desc: 'Complimentary worldwide delivery on all orders' },
+            { icon: '◇', label: 'London Delivery', desc: 'Free delivery within London. Other locations quoted.' },
             { icon: '◉', label: '10-Year Guarantee', desc: 'We stand behind every rug we sell' },
             { icon: '◎', label: 'Bespoke Service', desc: 'Custom sizes and colourways available' },
           ].map(item => (

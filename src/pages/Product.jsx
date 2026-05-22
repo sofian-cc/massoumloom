@@ -57,7 +57,7 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
                   onClick={() => setActiveImg(i)}
                   aria-label={`View image ${i + 1}`}
                 >
-                  <img src={src} alt="" loading="lazy" />
+                  <img src={src} alt="" loading="eager" />
                 </button>
               ))}
             </div>
@@ -80,17 +80,20 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
           <hr className="ml-product-page__divider" />
 
           <p className="ml-product-page__price-label">Price</p>
-          <p className="ml-product-page__price">Price upon request</p>
+          <p className="ml-product-page__price">Available on enquiry</p>
+          <p style={{ fontSize: '0.8125rem', color: 'var(--ml-text-mid)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+            All pieces are made to order. Contact us for pricing, lead times, and availability. We respond within 48 hours.
+          </p>
 
           <button
             className="ml-product-page__enquire"
-            onClick={onContact}
+            onClick={() => onContact(product)}
           >
             Enquire about this piece →
           </button>
 
           <p style={{ fontSize: '0.8rem', color: 'var(--ml-text-mid)', textAlign: 'center' }}>
-            Complimentary worldwide delivery
+            Free delivery within London
           </p>
 
           <hr className="ml-product-page__divider" />
@@ -129,9 +132,9 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
 
             {tab === 'delivery' && (
               <div className="ml-tabs__panel">
-                <p>All pieces are made to order and delivered worldwide at no extra charge. We use insured specialist art couriers with full tracking and white-glove handling.</p>
-                <p>Estimated delivery: 6–10 months from order confirmation, depending on weaving complexity and current studio queue.</p>
-                <p>We will keep you updated throughout the process and send photographs at key stages.</p>
+                <p>Free delivery is available within London. For deliveries outside London, we will provide a quote based on your location.</p>
+                <p>All pieces are made to order. Estimated lead time is 6–10 months from order confirmation, depending on weaving complexity.</p>
+                <p>We use insured specialist couriers with full tracking and white-glove handling. You will receive photographs at key stages throughout the weaving process.</p>
               </div>
             )}
 

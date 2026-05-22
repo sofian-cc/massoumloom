@@ -5,7 +5,7 @@ export default function About({ onContact }) {
     <div>
 
       {/* ── Section 1: Hero split ── */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100svh' }}>
+      <section className="ml-about-hero" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100svh' }}>
         <div style={{ overflow: 'hidden', background: '#E8E6E0' }}>
           <img
             src="assets/hero copy.jpg"
@@ -34,7 +34,7 @@ export default function About({ onContact }) {
         <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 300, textAlign: 'center', marginBottom: 'clamp(3rem, 6vw, 5rem)' }}>
           What we believe
         </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3rem', maxWidth: 'var(--ml-shell)', margin: '0 auto' }}>
+        <div className="ml-about-beliefs" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3rem', maxWidth: 'var(--ml-shell)', margin: '0 auto' }}>
           {[
             {
               heading: 'Rooted in tradition',
@@ -60,7 +60,7 @@ export default function About({ onContact }) {
 
       {/* ── Section 3: The Craft ── */}
       <section style={{ background: 'var(--ml-white)', padding: 'clamp(4rem, 8vw, 8rem) var(--ml-px)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 'clamp(3rem, 6vw, 8rem)', maxWidth: 'var(--ml-shell)', margin: '0 auto', alignItems: 'start' }}>
+        <div className="ml-about-two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 'clamp(3rem, 6vw, 8rem)', maxWidth: 'var(--ml-shell)', margin: '0 auto', alignItems: 'start' }}>
           <div>
             <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ml-text-mid)', marginBottom: '1.5rem' }}>The craft</p>
             <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 3vw, 2.75rem)', fontWeight: 300, lineHeight: 1.2 }}>
@@ -80,7 +80,7 @@ export default function About({ onContact }) {
 
       {/* ── Section 4: Philosophy ── */}
       <section style={{ background: 'var(--ml-bg-dark)', color: 'var(--ml-white)', padding: 'clamp(4rem, 8vw, 8rem) var(--ml-px)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 'clamp(3rem, 6vw, 8rem)', maxWidth: 'var(--ml-shell)', margin: '0 auto', alignItems: 'start' }}>
+        <div className="ml-about-two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 'clamp(3rem, 6vw, 8rem)', maxWidth: 'var(--ml-shell)', margin: '0 auto', alignItems: 'start' }}>
           <div>
             <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '1.5rem' }}>The philosophy</p>
             <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 3vw, 2.75rem)', fontWeight: 300, fontStyle: 'italic', lineHeight: 1.2, color: 'var(--ml-white)' }}>
@@ -102,10 +102,10 @@ export default function About({ onContact }) {
       <section style={{ background: 'var(--ml-white)', padding: 'clamp(4rem, 8vw, 8rem) var(--ml-px)' }}>
         <div style={{ maxWidth: 'var(--ml-shell)', margin: '0 auto' }}>
           <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ml-text-mid)', marginBottom: '0.75rem' }}>Process</p>
-          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 300, marginBottom: 'clamp(3rem, 6vw, 5rem)' }}>
+          <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 300, marginBottom: '2rem' }}>
             From cartoon to carpet
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', borderTop: '1px solid var(--ml-border)' }}>
+          <div className="ml-about-process" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', borderTop: '1px solid var(--ml-border)' }}>
             {[
               { num: '01', label: 'Design',    time: '2–4 weeks',   desc: 'Archival research and hand-drawn cartoon.' },
               { num: '02', label: 'Dyeing',    time: '2–3 weeks',   desc: 'Natural pigments mordanted onto hand-spun wool.' },

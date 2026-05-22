@@ -62,7 +62,7 @@ function Nav() {
     <header className={`ml-nav${scrolled ? ' ml-nav--scrolled' : ''}`} role="banner" ref={menuRef}>
       <div className="ml-nav__inner">
         <button className="ml-nav__logo" onClick={() => nav('home')} aria-label="Massoum Loom home">
-          <img src="assets/MASSOUM LOOM LOGO.JPG" alt="Massoum Loom" className="ml-nav__logo-img" />
+          <img src="assets/logo-1776629483547.JPG" alt="Massoum Loom" className="ml-nav__logo-img" />
         </button>
 
         <nav className="ml-nav__links" aria-label="Main navigation">
@@ -99,14 +99,14 @@ function Footer() {
         {/* Brand */}
         <div className="ml-footer__brand">
           <img
-            src="assets/MASSOUM LOOM LOGO.JPG"
+            src="assets/logo-1776629483547.JPG"
             alt="Massoum Loom"
             style={{ height: '40px', width: 'auto', filter: 'invert(1)', marginBottom: '1.25rem', display: 'block', mixBlendMode: 'normal' }}
           />
           <p className="ml-footer__tagline">
             Handwoven rugs inspired by Central Asian<br />heritage. Made to order. Delivered worldwide.
           </p>
-          <a href="https://www.instagram.com/massouloom" className="ml-footer__instagram"
+          <a href="https://www.instagram.com/massoumloom" className="ml-footer__instagram"
             target="_blank" rel="noopener noreferrer">
             @MASSOULOOM
           </a>
@@ -178,6 +178,7 @@ function ScrollToTop() {
 /* ── App ──────────────────────────────────────────────────────────── */
 function App() {
   const [route, setRoute] = useState(parseHash());
+  const [enquiry, setEnquiry] = useState(null);
 
   useEffect(() => {
     const onHashChange = () => {
@@ -212,12 +213,12 @@ function App() {
             <Product
               handle={route.slug}
               onCollection={(slug) => go(slug)}
-              onContact={() => go('contact')}
+              onContact={(product) => { setEnquiry(product); go('contact'); }}
               onBack={() => window.history.back()}
             />
           )}
           {route.page === 'about'   && <About onContact={() => go('contact')} />}
-          {route.page === 'contact' && <Contact />}
+          {route.page === 'contact' && <Contact enquiry={enquiry} onClearEnquiry={() => setEnquiry(null)} />}
           {route.page === 'simple'  && <SimplePage page={route.slug} onContact={() => go('contact')} />}
         </Suspense>
       </main>

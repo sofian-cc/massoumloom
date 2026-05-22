@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 
-// ── Web3Forms — sign up free at web3forms.com and paste your access key below ──
 const WEB3FORMS_KEY = 'cbc2591a-7490-4ed1-accf-2b5ad6386a2b';
 
-export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
+export default function Contact({ enquiry, onClearEnquiry }) {
+  const defaultSubject = enquiry ? `Enquiry: ${enquiry.title} (${enquiry.sku})` : '';
+  const defaultMessage = enquiry
+    ? `I am interested in ${enquiry.title}.\n\nPiece details:\n- Reference: ${enquiry.sku}\n- Collection: ${enquiry.collection === 'heritage' ? 'Heritage' : 'Modern'}${enquiry.width && enquiry.length ? `\n- Size: ${Math.max(enquiry.width, enquiry.length)} × ${Math.min(enquiry.width, enquiry.length)} cm` : ''}${enquiry.fieldColour ? `\n- Field colour: ${enquiry.fieldColour}` : ''}\n\nPlease send me more information on pricing and availability.`
+    : '';
+  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: defaultSubject, message: defaultMessage });
   const [sending, setSending] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -49,6 +52,7 @@ export default function Contact() {
     setSubmitted(false);
     setForm({ name: '', email: '', phone: '', subject: '', message: '' });
     setError('');
+    if (onClearEnquiry) onClearEnquiry();
   };
 
   return (
@@ -56,6 +60,12 @@ export default function Contact() {
       {/* Form column */}
       <div className="ml-contact-form-col">
         <h1>Get in touch.</h1>
+        {enquiry && (
+          <div style={{ background: 'var(--ml-bg-alt)', border: '1px solid var(--ml-border)', borderRadius: '3px', padding: '1rem 1.25rem', marginBottom: '1.5rem', fontSize: '0.875rem' }}>
+            <p style={{ fontWeight: 500, marginBottom: '0.25rem' }}>Enquiring about: {enquiry.title}</p>
+            <p style={{ color: 'var(--ml-text-mid)' }}>Ref: {enquiry.sku} · The form below has been pre-filled with the piece details.</p>
+          </div>
+        )}
         <p className="ml-lede">
           Interested in a piece? Have a question about a rug's provenance or dimensions?
           We respond to every enquiry within 48 hours, Monday–Friday.
@@ -164,8 +174,8 @@ export default function Contact() {
         <div>
           <p className="ml-contact-block__label">Instagram</p>
           <p className="ml-contact-block__value">
-            <a href="https://www.instagram.com/massouloom" target="_blank" rel="noopener noreferrer">
-              @massouloom
+            <a href="https://www.instagram.com/massoumloom" target="_blank" rel="noopener noreferrer">
+              @massoumloom
             </a>
           </p>
         </div>
@@ -173,8 +183,7 @@ export default function Contact() {
         <div>
           <p className="ml-contact-block__label">Delivery</p>
           <p className="ml-contact-block__value" style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1rem', color: 'var(--ml-text-mid)', fontWeight: 300 }}>
-            Complimentary worldwide delivery on all pieces. We use insured specialist
-            art couriers and provide full tracking.
+            Free delivery within London. For other locations, delivery costs are quoted at time of order.
           </p>
         </div>
 

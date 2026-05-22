@@ -16,11 +16,8 @@ export function getImages(product) {
   if (match) {
     const n = parseInt(match[1], 10);
     if (LOCAL_SERIALS.has(n)) {
-      const dir = encodeURIComponent(`Serial No.${n}`);
-      return [1,2,3,4].map(i => {
-        const file = encodeURIComponent(`Serial No.${n} (${i} of 4).jpg`);
-        return `assets/Products/Rugs%20-%20Edited%20Images/${dir}/${file}`;
-      });
+      const base = `assets/Products/Rugs - Edited Images/Serial No.${n}`;
+      return [1,2,3,4].map(i => `${base}/Serial No.${n} (${i} of 4).jpg`);
     }
   }
   return [product.image];

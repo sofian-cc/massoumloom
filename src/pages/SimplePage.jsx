@@ -56,8 +56,12 @@ const PAGES = {
     title: 'Delivery',
     sections: [
       {
-        heading: 'Worldwide delivery',
-        body: 'We offer complimentary worldwide delivery on all pieces. Every rug is shipped using insured specialist art couriers with full tracking and white-glove handling.',
+        heading: 'London delivery',
+        body: 'We offer free delivery within London on all pieces. Every rug is handled with care and positioned in your home on delivery.',
+      },
+      {
+        heading: 'Outside London',
+        body: 'For deliveries outside London, we use insured specialist art couriers with full tracking and white-glove handling. Delivery costs are quoted at the time of order based on your location.',
       },
       {
         heading: 'Lead times',
@@ -65,7 +69,7 @@ const PAGES = {
       },
       {
         heading: 'Delivery day',
-        body: 'Our couriers will contact you in advance to arrange a suitable delivery window. All pieces are carefully unrolled and positioned in your home on delivery.',
+        body: 'Our team will contact you in advance to arrange a suitable delivery window. All pieces are carefully unrolled and positioned in your home.',
       },
     ],
   },
