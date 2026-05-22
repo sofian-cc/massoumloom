@@ -28,9 +28,9 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
 
   const w = product.width;
   const l = product.length;
-  const longer  = Math.max(w, l);
-  const shorter = Math.min(w, l);
-  const sizeStr = `${longer} × ${shorter} cm`;
+  const longer  = w && l ? Math.max(w, l) : null;
+  const shorter = w && l ? Math.min(w, l) : null;
+  const sizeStr = longer ? `${longer} × ${shorter} cm` : 'Dimensions on request';
   const collectionLabel = product.collection === 'heritage' ? 'Heritage' : 'Modern';
 
   const enquireSubject = encodeURIComponent(`Enquiry: Massoum Loom ${product.title} (${product.sku})`);

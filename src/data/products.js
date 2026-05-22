@@ -16,8 +16,11 @@ export function getImages(product) {
   if (match) {
     const n = parseInt(match[1], 10);
     if (LOCAL_SERIALS.has(n)) {
-      const base = `assets/Products/Rugs - Edited Images/Serial No.${n}`;
-      return [1,2,3,4].map(i => `${base}/Serial No.${n} (${i} of 4).jpg`);
+      const dir = encodeURIComponent(`Serial No.${n}`);
+      return [1,2,3,4].map(i => {
+        const file = encodeURIComponent(`Serial No.${n} (${i} of 4).jpg`);
+        return `assets/Products/Rugs%20-%20Edited%20Images/${dir}/${file}`;
+      });
     }
   }
   return [product.image];
@@ -78,16 +81,6 @@ export const products = [
     pile: 'Wool', knotDensity: '80–120 KPSI',
     fieldColour: 'Medium Red', borderColour: 'Deep Blue',
     motifs: 'Shah Abbasi',
-  },
-  {
-    handle: 'wl-hk-035-009', sku: 'WL-HK-035-009', collection: 'heritage',
-    title: 'No. 9',
-    image: 'https://cdn.shopify.com/s/files/1/0945/7408/4479/files/SerialNo.9_1of4.png',
-    length: null, width: null,
-    origin: 'Afghanistan', province: 'North-West Afghanistan',
-    pile: 'Wool', knotDensity: '80–120 KPSI',
-    fieldColour: null, borderColour: null,
-    motifs: null,
   },
   {
     handle: 'wl-hk-035-010', sku: 'WL-HK-035-010', collection: 'heritage',
@@ -250,16 +243,6 @@ export const products = [
     motifs: 'Arabesque/Islimi, Shah Abbasi, Boteh, Saz leaves',
   },
   {
-    handle: 'wl-hk-035-035', sku: 'WL-HK-035-035', collection: 'heritage',
-    title: 'No. 35',
-    image: 'https://cdn.shopify.com/s/files/1/0945/7408/4479/files/SerialNo.35_1of4.png',
-    length: null, width: null,
-    origin: 'Afghanistan', province: 'North-West Afghanistan',
-    pile: 'Wool', knotDensity: '80–120 KPSI',
-    fieldColour: null, borderColour: null,
-    motifs: null,
-  },
-  {
     handle: 'wl-hk-035-038', sku: 'WL-HK-035-038', collection: 'heritage',
     title: 'No. 38',
     image: 'https://cdn.shopify.com/s/files/1/0945/7408/4479/files/SerialNo.38_1of4.png',
@@ -268,16 +251,6 @@ export const products = [
     pile: 'Wool', knotDensity: '80–120 KPSI',
     fieldColour: 'Terracotta', borderColour: 'Ivory',
     motifs: 'Shah Abbasi',
-  },
-  {
-    handle: 'wl-hk-035-039', sku: 'WL-HK-035-039', collection: 'heritage',
-    title: 'No. 39',
-    image: 'https://cdn.shopify.com/s/files/1/0945/7408/4479/files/SerialNo.39_1of4.png',
-    length: null, width: null,
-    origin: 'Afghanistan', province: 'North-West Afghanistan',
-    pile: 'Wool', knotDensity: '80–120 KPSI',
-    fieldColour: null, borderColour: null,
-    motifs: null,
   },
   {
     handle: 'wl-hk-035-040', sku: 'WL-HK-035-040', collection: 'heritage',
@@ -478,26 +451,6 @@ export const products = [
     pile: 'Wool', knotDensity: '80–120 KPSI',
     fieldColour: 'Deep Red', borderColour: 'Deep Red',
     motifs: 'Geometric',
-  },
-  {
-    handle: 'wl-hk-035-111-1305', sku: 'WL-HK-035-111-1305', collection: 'heritage',
-    title: 'No. 111',
-    image: 'https://cdn.shopify.com/s/files/1/0945/7408/4479/files/SerialNo.1305_1of4.png',
-    length: 345, width: 280,
-    origin: 'Afghanistan', province: 'North-West Afghanistan',
-    pile: 'Wool', knotDensity: '80–120 KPSI',
-    fieldColour: 'Medium Red', borderColour: 'Medium Red',
-    motifs: 'Boteh, Arabesque/Islimi, Gul, Saz leaves',
-  },
-  {
-    handle: 'wl-hk-035-112-337', sku: 'WL-HK-035-112-337', collection: 'heritage',
-    title: 'No. 112',
-    image: 'https://cdn.shopify.com/s/files/1/0945/7408/4479/files/SerialNo.337_1of4.png',
-    length: 338, width: 253,
-    origin: 'Afghanistan', province: 'North-West Afghanistan',
-    pile: 'Wool', knotDensity: '80–120 KPSI',
-    fieldColour: 'Medium Blue', borderColour: 'Ivory',
-    motifs: 'Boteh, Shah Abbasi, Arabesque/Islimi',
   },
 
   // ═══════════════════════════════════════════════════════

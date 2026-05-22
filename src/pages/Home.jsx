@@ -111,7 +111,7 @@ export default function Home({ onCollection, onProduct, onAbout }) {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
             {[
-              ['76', 'Pieces in the collection'],
+              ['71', 'Pieces in the collection'],
               ['80–120', 'Knots per sq. inch'],
               ['100%', 'Natural wool pile'],
               ['∞', 'Worldwide delivery'],
