@@ -15,6 +15,7 @@ export default function About({ onContact }) {
             src="assets/hero copy.jpg"
             alt="Master weaver at the loom"
             loading="eager"
+            className="ml-about-hero-img"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }}
           />
         </div>
@@ -100,7 +101,7 @@ export default function About({ onContact }) {
         <div style={{ maxWidth: '90rem', margin: '0 auto' }}>
           <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#6B6B6B', marginBottom: '0.75rem' }}>Process</p>
           <h2 style={{ fontFamily: serif, fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', fontWeight: 300, marginBottom: '2.5rem', color: '#0C0C0C' }}>
-            From cartoon to carpet
+            From concept to carpet
           </h2>
           <div className="ml-about-process-grid">
             {[

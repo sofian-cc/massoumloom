@@ -621,6 +621,10 @@ ul, ol { list-style: none; }
   padding-right: 1.5rem;
 }
 
+.ml-about-hero-img {
+  object-position: center 15%;
+}
+
 /* ── Product page ───────────────────────────────────────────────── */
 .ml-product-page {
   display: grid;
@@ -1516,6 +1520,7 @@ ul, ol { list-style: none; }
 
   /* About page */
   .ml-about-hero-grid { grid-template-columns: 1fr; min-height: auto; }
+  .ml-about-hero-img { object-position: center 35%; }
   .ml-about-beliefs-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .ml-about-two-col { grid-template-columns: 1fr; gap: 2rem; }
   .ml-about-process-grid { grid-template-columns: repeat(3, 1fr); }
