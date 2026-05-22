@@ -30,7 +30,7 @@ function ProductCard({ product, onClick }) {
   );
 }
 
-export default function Home({ onCollection, onProduct }) {
+export default function Home({ onCollection, onProduct, onAbout }) {
   const featured = getFeatured(6);
 
   return (
@@ -39,6 +39,24 @@ export default function Home({ onCollection, onProduct }) {
 
       {/* ── Hero ── */}
       <section className="ml-hero" aria-label="Hero">
+        <div className="ml-hero__content">
+          <p className="ml-hero__eyebrow">Handwoven · Central Asia</p>
+          <h1 className="ml-hero__heading">
+            The art of<br /><em>the loom,</em><br />reborn.
+          </h1>
+          <p className="ml-hero__body">
+            Each Massoum Loom rug carries centuries of Central Asian tradition,
+            reinterpreted for the modern interior.
+          </p>
+          <div className="ml-hero__actions">
+            <button className="ml-btn ml-btn--primary" onClick={() => onCollection('heritage')}>
+              Shop Collection
+            </button>
+            <button className="ml-btn ml-btn--outline" onClick={() => onAbout()}>
+              Our Story
+            </button>
+          </div>
+        </div>
         <div className="ml-hero__image-col">
           <img
             src="assets/belgravia-hero.png"
@@ -49,25 +67,6 @@ export default function Home({ onCollection, onProduct }) {
             style={{ objectPosition: 'center center' }}
           />
         </div>
-        <div className="ml-hero__content">
-          <p className="ml-hero__eyebrow">Afghanistan · North-West</p>
-          <h1 className="ml-hero__heading">
-            Handwoven<br />in <em>Afghanistan.</em><br />For the World.
-          </h1>
-          <p className="ml-hero__body">
-            Each rug is hand-knotted by master weavers in north-west Afghanistan,
-            using centuries-old techniques and natural wool dyes.
-            No two pieces are alike.
-          </p>
-          <div className="ml-hero__actions">
-            <button className="ml-btn ml-btn--primary" onClick={() => onCollection('heritage')}>
-              Heritage Collection →
-            </button>
-            <button className="ml-btn ml-btn--outline" onClick={() => onCollection('modern')}>
-              Modern Collection
-            </button>
-          </div>
-        </div>
       </section>
 
       {/* ── Marquee ── */}
@@ -76,12 +75,11 @@ export default function Home({ onCollection, onProduct }) {
           {[0, 1].map(i => (
             <span key={i}>
               {[
-                'Hand-knotted in north-west Afghanistan',
-                'Natural wool pile',
-                'Vegetable-derived dyes',
-                'Asymmetric Persian knot',
-                'No two pieces alike',
-                'Worldwide delivery',
+                'Hand-knotted wool & silk',
+                '180–260 KPSI',
+                'Central Asian heritage',
+                'Modern interpretation',
+                'Made to order',
               ].map(text => (
                 <span key={text} className="ml-marquee__item">
                   {text} <span className="ml-marquee__dot">·</span>

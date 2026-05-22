@@ -7,33 +7,28 @@ const Collection = lazy(() => import('./pages/Collection.jsx'));
 const Product    = lazy(() => import('./pages/Product.jsx'));
 const About      = lazy(() => import('./pages/About.jsx'));
 const Contact    = lazy(() => import('./pages/Contact.jsx'));
+const SimplePage = lazy(() => import('./pages/SimplePage.jsx'));
 
 /* ── Hash router ──────────────────────────────────────────────────── */
+const SIMPLE_PAGES = new Set(['bespoke', 'sustainability', 'press', 'delivery', 'care-guide', 'returns']);
+
 function parseHash() {
   const raw = window.location.hash.replace(/^#\/?/, '').trim();
-  if (!raw || raw === 'home') return { page: 'home', slug: null };
-  if (raw === 'heritage')     return { page: 'collection', slug: 'heritage' };
-  if (raw === 'modern')       return { page: 'collection', slug: 'modern' };
-  if (raw === 'about')        return { page: 'about', slug: null };
-  if (raw === 'contact')      return { page: 'contact', slug: null };
-  if (raw.startsWith('rug/')) return { page: 'product', slug: raw.slice(4) };
+  if (!raw || raw === 'home')  return { page: 'home',       slug: null };
+  if (raw === 'collection')    return { page: 'collection', slug: 'all' };
+  if (raw === 'heritage')      return { page: 'collection', slug: 'heritage' };
+  if (raw === 'modern')        return { page: 'collection', slug: 'modern' };
+  if (raw === 'about')         return { page: 'about',      slug: null };
+  if (raw === 'contact')       return { page: 'contact',    slug: null };
+  if (raw.startsWith('rug/'))  return { page: 'product',    slug: raw.slice(4) };
+  if (SIMPLE_PAGES.has(raw))   return { page: 'simple',     slug: raw };
   return { page: 'home', slug: null };
 }
 
-function setHash(h) {
-  window.location.hash = h;
-}
-
-const PAGE_TITLES = {
-  home:       'Massoum Loom | Handwoven Afghan Rugs',
-  collection: (slug) => `${slug === 'heritage' ? 'Heritage' : 'Modern'} Collection | Massoum Loom`,
-  product:    (title) => `${title} | Massoum Loom`,
-  about:      'About | Massoum Loom',
-  contact:    'Contact | Massoum Loom',
-};
+function setHash(h) { window.location.hash = h; }
 
 /* ── Nav ──────────────────────────────────────────────────────────── */
-function Nav({ route, go }) {
+function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = React.useRef(null);
@@ -48,9 +43,7 @@ function Nav({ route, go }) {
   useEffect(() => {
     if (!menuOpen) return;
     const onClickOutside = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setMenuOpen(false);
-      }
+      if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false);
     };
     document.addEventListener('mousedown', onClickOutside);
     return () => document.removeEventListener('mousedown', onClickOutside);
@@ -58,9 +51,11 @@ function Nav({ route, go }) {
 
   const nav = (hash) => { setHash(hash); setMenuOpen(false); };
 
-  const isActive = (hash) => {
+  const isActive = (hashes) => {
     const h = window.location.hash.replace(/^#\/?/, '');
-    return h === hash || (hash === 'home' && (!h || h === 'home'));
+    return (Array.isArray(hashes) ? hashes : [hashes]).some(hash =>
+      h === hash || (hash === 'home' && (!h || h === 'home'))
+    );
   };
 
   return (
@@ -71,29 +66,20 @@ function Nav({ route, go }) {
         </button>
 
         <nav className="ml-nav__links" aria-label="Main navigation">
-          <button className={isActive('heritage') ? 'active' : ''} onClick={() => nav('heritage')}>Heritage</button>
-          <button className={isActive('modern') ? 'active' : ''} onClick={() => nav('modern')}>Modern</button>
+          <button className={isActive(['collection','heritage','modern']) ? 'active' : ''} onClick={() => nav('collection')}>Collection</button>
           <button className={isActive('about') ? 'active' : ''} onClick={() => nav('about')}>About</button>
+          <button className={isActive('contact') ? 'active' : ''} onClick={() => nav('contact')}>Contact</button>
         </nav>
 
-        <button className="ml-nav__enquire" onClick={() => nav('contact')}>
-          Enquire <span aria-hidden="true">→</span>
-        </button>
-
-        <button
-          className="ml-nav__hamburger"
-          onClick={() => setMenuOpen(o => !o)}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-        >
+        <button className="ml-nav__hamburger" onClick={() => setMenuOpen(o => !o)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen}>
           <span /><span /><span />
         </button>
       </div>
 
       {menuOpen && (
         <div className="ml-nav__mobile">
-          <button onClick={() => nav('heritage')}>Heritage</button>
-          <button onClick={() => nav('modern')}>Modern</button>
+          <button onClick={() => nav('collection')}>Collection</button>
           <button onClick={() => nav('about')}>About</button>
           <button onClick={() => nav('contact')}>Contact</button>
         </div>
@@ -103,60 +89,61 @@ function Nav({ route, go }) {
 }
 
 /* ── Footer ───────────────────────────────────────────────────────── */
-function Footer({ go }) {
+function Footer() {
   const nav = (hash) => { setHash(hash); window.scrollTo({ top: 0, behavior: 'instant' }); };
+
   return (
     <footer className="ml-footer">
       <div className="ml-footer__inner">
+
+        {/* Brand */}
         <div className="ml-footer__brand">
           <img
             src="assets/MASSOUM LOOM LOGO.JPG"
             alt="Massoum Loom"
-            style={{ height: '48px', width: 'auto', filter: 'invert(1)', marginBottom: '1rem', display: 'block' }}
+            style={{ height: '40px', width: 'auto', filter: 'invert(1)', marginBottom: '1.25rem', display: 'block', mixBlendMode: 'normal' }}
           />
           <p className="ml-footer__tagline">
-            Handwoven rugs from Afghanistan.<br />Made to order. Delivered worldwide.
+            Handwoven rugs inspired by Central Asian<br />heritage. Made to order. Delivered worldwide.
           </p>
-          <a
-            href="https://www.instagram.com/massouloom"
-            className="ml-footer__instagram"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @massouloom
+          <a href="https://www.instagram.com/massouloom" className="ml-footer__instagram"
+            target="_blank" rel="noopener noreferrer">
+            @MASSOULOOM
           </a>
         </div>
 
+        {/* Shop */}
         <div className="ml-footer__col">
-          <p className="ml-footer__col-title">Collection</p>
+          <p className="ml-footer__col-title">Shop</p>
+          <button onClick={() => nav('collection')}>Collection</button>
           <button onClick={() => nav('heritage')}>Heritage</button>
           <button onClick={() => nav('modern')}>Modern</button>
+          <button onClick={() => nav('bespoke')}>Bespoke</button>
         </div>
 
+        {/* Company */}
         <div className="ml-footer__col">
           <p className="ml-footer__col-title">Company</p>
           <button onClick={() => nav('about')}>About</button>
-          <button onClick={() => nav('contact')}>Contact</button>
+          <button onClick={() => nav('sustainability')}>Sustainability</button>
+          <button onClick={() => nav('press')}>Press</button>
         </div>
 
+        {/* Help */}
         <div className="ml-footer__col">
-          <p className="ml-footer__col-title">Visit</p>
-          <p className="ml-footer__address">
-            Unit B2, 1 Chandos Road<br />
-            London, NW10 6NF
-          </p>
-          <a href="tel:02081917488" className="ml-footer__phone">020 8191 7488</a>
+          <p className="ml-footer__col-title">Help</p>
+          <button onClick={() => nav('contact')}>Contact</button>
+          <button onClick={() => nav('delivery')}>Delivery</button>
+          <button onClick={() => nav('care-guide')}>Care guide</button>
+          <button onClick={() => nav('returns')}>Returns</button>
         </div>
+
       </div>
 
       <div className="ml-footer__bottom">
-        <p>&copy; {new Date().getFullYear()} Massoum Loom. All rights reserved.</p>
-        <a
-          href="https://www.carpetsclinic.co.uk"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="ml-footer__sister"
-        >
+        <p>&copy; {new Date().getFullYear()} Massoum Loom Ltd. All rights reserved.</p>
+        <p style={{ color: 'rgba(255,255,255,0.3)' }}>London NW10 6NF</p>
+        <a href="https://www.carpetsclinic.co.uk" target="_blank" rel="noopener noreferrer" className="ml-footer__sister">
           Rug Cleaning &amp; Repair ↗
         </a>
       </div>
@@ -180,17 +167,11 @@ function ScrollToTop() {
       style={{
         position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 90,
         width: '44px', height: '44px', borderRadius: '50%',
-        background: 'var(--ml-accent)', color: '#fff',
-        fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
-        cursor: 'pointer', border: 'none',
-        transition: 'background 0.2s, transform 0.2s',
+        background: 'var(--ml-text)', color: '#fff',
+        fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.2)', cursor: 'pointer', border: 'none',
       }}
-      onMouseEnter={e => e.currentTarget.style.background = 'var(--ml-bg-dark)'}
-      onMouseLeave={e => e.currentTarget.style.background = 'var(--ml-accent)'}
-    >
-      ↑
-    </button>
+    >↑</button>
   );
 }
 
@@ -200,33 +181,30 @@ function App() {
 
   useEffect(() => {
     const onHashChange = () => {
-      const r = parseHash();
-      setRoute(r);
+      setRoute(parseHash());
       window.scrollTo({ top: 0, behavior: 'instant' });
     };
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
-  const go = (hash) => {
-    setHash(hash);
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  };
+  const go = (hash) => { setHash(hash); window.scrollTo({ top: 0, behavior: 'instant' }); };
 
   return (
     <>
-      <Nav route={route} go={go} />
+      <Nav />
       <main className="ml-main" id="MainContent" tabIndex={-1}>
         <Suspense fallback={<div className="ml-loading" aria-label="Loading" />}>
           {route.page === 'home' && (
             <Home
               onCollection={(slug) => go(slug)}
               onProduct={(handle) => go(`rug/${handle}`)}
+              onAbout={() => go('about')}
             />
           )}
           {route.page === 'collection' && (
             <Collection
-              collection={route.slug}
+              initialCollection={route.slug}
               onProduct={(handle) => go(`rug/${handle}`)}
             />
           )}
@@ -238,18 +216,17 @@ function App() {
               onBack={() => window.history.back()}
             />
           )}
-          {route.page === 'about' && <About onContact={() => go('contact')} />}
+          {route.page === 'about'   && <About onContact={() => go('contact')} />}
           {route.page === 'contact' && <Contact />}
+          {route.page === 'simple'  && <SimplePage page={route.slug} onContact={() => go('contact')} />}
         </Suspense>
       </main>
-      <Footer go={go} />
+      <Footer />
       <ScrollToTop />
     </>
   );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <React.StrictMode><App /></React.StrictMode>
 );

@@ -1,12 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { getCollection, getImages } from '../data/products.js';
+import { products, getImages } from '../data/products.js';
 
 function ProductCard({ product, onClick }) {
   const w = product.width;
   const l = product.length;
-  const longer = Math.max(w, l);
-  const shorter = Math.min(w, l);
-  const sizeStr = `${longer} × ${shorter} cm`;
+  const longer  = w && l ? Math.max(w, l) : null;
+  const shorter = w && l ? Math.min(w, l) : null;
+  const sizeStr = longer ? `${longer} × ${shorter} cm` : '';
 
   return (
     <article
@@ -20,7 +20,7 @@ function ProductCard({ product, onClick }) {
       <div className="ml-card__image-wrap">
         <img
           src={getImages(product)[0]}
-          alt={`${product.title}, ${product.fieldColour} rug from ${product.province}, ${product.origin}`}
+          alt={`${product.title}`}
           loading="lazy"
           width="400"
           height="533"
@@ -28,114 +28,115 @@ function ProductCard({ product, onClick }) {
       </div>
       <div className="ml-card__info">
         <p className="ml-card__title">{product.title}</p>
-        <p className="ml-card__sub">{product.fieldColour}{product.motifs ? ` · ${product.motifs.split(',')[0].trim()}` : ''}</p>
-        <p className="ml-card__size">{sizeStr}</p>
+        <p className="ml-card__sub">{product.fieldColour}{product.collection ? ` · ${product.collection === 'heritage' ? 'Heritage' : 'Modern'}` : ''}</p>
+        {sizeStr && <p className="ml-card__size">{sizeStr}</p>}
         <span className="ml-card__cta">View piece →</span>
       </div>
     </article>
   );
 }
 
-const COLOUR_GROUPS = [
-  'All',
-  'Red & Deep Red',
-  'Blue',
-  'Ivory & Beige',
-  'Grey & Neutral',
-  'Other',
-];
+const COLOUR_GROUPS = ['Red & Deep Red', 'Blue', 'Ivory & Beige', 'Grey & Neutral', 'Other'];
 
 function colourGroup(fc) {
   const f = (fc || '').toLowerCase();
-  if (f.includes('red')) return 'Red & Deep Red';
-  if (f.includes('blue')) return 'Blue';
-  if (f === 'ivory' || f === 'beige') return 'Ivory & Beige';
-  if (f === 'grey' || f === 'chestnut' || f === 'walnut') return 'Grey & Neutral';
+  if (f.includes('red'))                                  return 'Red & Deep Red';
+  if (f.includes('blue'))                                 return 'Blue';
+  if (f === 'ivory' || f === 'beige' || f.includes('ivory') || f.includes('beige')) return 'Ivory & Beige';
+  if (f.includes('grey') || f === 'chestnut' || f === 'walnut') return 'Grey & Neutral';
   return 'Other';
 }
 
-const SORT_OPTIONS = [
-  { value: 'featured', label: 'Featured' },
-  { value: 'size-asc',  label: 'Size: Small to Large' },
-  { value: 'size-desc', label: 'Size: Large to Small' },
-];
-
 function area(p) { return (p.width || 0) * (p.length || 0); }
 
-export default function Collection({ collection, onProduct }) {
-  const all = useMemo(() => getCollection(collection), [collection]);
-  const [filter, setFilter] = useState('All');
+export default function Collection({ initialCollection = 'all', onProduct }) {
+  const [collFilter, setCollFilter] = useState(initialCollection);
+  const [colourFilter, setColourFilter] = useState('All');
   const [sort, setSort] = useState('featured');
 
+  // Reset colour filter when collection changes
+  const handleCollFilter = (val) => {
+    setCollFilter(val);
+    setColourFilter('All');
+  };
+
   const visible = useMemo(() => {
-    let list = filter === 'All' ? all : all.filter(p => colourGroup(p.fieldColour) === filter);
+    let list = collFilter === 'all'
+      ? products
+      : products.filter(p => p.collection === collFilter);
+
+    if (colourFilter !== 'All') {
+      list = list.filter(p => colourGroup(p.fieldColour) === colourFilter);
+    }
+
     if (sort === 'size-asc')  list = [...list].sort((a, b) => area(a) - area(b));
     if (sort === 'size-desc') list = [...list].sort((a, b) => area(b) - area(a));
-    return list;
-  }, [all, filter, sort]);
 
-  const label = collection === 'heritage' ? 'Heritage' : 'Modern';
-  const desc  = collection === 'heritage'
-    ? 'Classic compositions in rich jewel-toned fields. Shah Abbasi medallions, arabesque borders, and centuries of craft.'
-    : 'Contemporary palettes and quieter geometries, the same mastery, a different mood.';
+    return list;
+  }, [collFilter, colourFilter, sort]);
+
+  const btnBase = {
+    fontSize: '0.7rem',
+    letterSpacing: '0.12em',
+    textTransform: 'uppercase',
+    padding: '0.55rem 1.25rem',
+    border: '1px solid var(--ml-border)',
+    borderRadius: '2px',
+    cursor: 'pointer',
+    fontFamily: 'inherit',
+    transition: 'all 0.15s',
+  };
+
+  const btnActive   = { ...btnBase, background: 'var(--ml-text)', color: '#fff', borderColor: 'var(--ml-text)' };
+  const btnInactive = { ...btnBase, background: 'transparent', color: 'var(--ml-text-mid)', borderColor: 'var(--ml-border)' };
 
   return (
     <div>
       {/* Header */}
-      <div className="ml-shell">
-        <div className="ml-collection-page__header">
-          <p className="ml-collection-page__eyebrow">Afghanistan · North-West</p>
-          <h1 className="ml-collection-page__title">{label}</h1>
-          <p style={{ color: 'var(--ml-text-mid)', maxWidth: '52ch', lineHeight: 1.7, fontSize: '0.9375rem', marginBottom: '1.5rem' }}>
-            {desc}
-          </p>
-          <p className="ml-collection-page__count">{visible.length} piece{visible.length !== 1 ? 's' : ''}</p>
+      <div style={{ background: 'var(--ml-bg)', padding: 'clamp(3rem, 6vw, 6rem) var(--ml-px) 2.5rem', maxWidth: 'var(--ml-shell)', margin: '0 auto' }}>
+        <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ml-text-mid)', marginBottom: '1rem' }}>
+          Massoum Loom
+        </p>
+        <h1 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(3rem, 8vw, 7rem)', fontWeight: 300, lineHeight: 1, marginBottom: '2.5rem' }}>
+          The Collection
+        </h1>
+
+        {/* Primary filters: All / Heritage / Modern */}
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: collFilter !== 'all' ? '1rem' : '0' }}>
+          {[['all', 'All'], ['heritage', 'Heritage'], ['modern', 'Modern']].map(([val, label]) => (
+            <button key={val} onClick={() => handleCollFilter(val)} style={collFilter === val ? btnActive : btnInactive}>
+              {label}
+            </button>
+          ))}
         </div>
 
-        {/* Filters + sort row */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            {COLOUR_GROUPS.map(g => (
+        {/* Sub-filters: colour (only when Heritage or Modern selected) */}
+        {collFilter !== 'all' && (
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.75rem' }}>
+            {['All', ...COLOUR_GROUPS].map(g => (
               <button
                 key={g}
-                onClick={() => setFilter(g)}
-                style={{
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  padding: '0.4rem 0.9rem',
-                  border: '1px solid',
-                  borderRadius: '2px',
-                  borderColor: filter === g ? 'var(--ml-accent)' : 'var(--ml-border)',
-                  background: filter === g ? 'var(--ml-accent)' : 'transparent',
-                  color: filter === g ? '#fff' : 'var(--ml-text-mid)',
-                  transition: 'all 0.2s',
-                  cursor: 'pointer',
-                }}
+                onClick={() => setColourFilter(g)}
+                style={colourFilter === g ? btnActive : btnInactive}
               >
                 {g}
               </button>
             ))}
+            <select
+              value={sort}
+              onChange={e => setSort(e.target.value)}
+              style={{ ...btnInactive, marginLeft: 'auto', paddingRight: '0.75rem' }}
+            >
+              <option value="featured">Featured</option>
+              <option value="size-asc">Size: Small to Large</option>
+              <option value="size-desc">Size: Large to Small</option>
+            </select>
           </div>
-          <select
-            value={sort}
-            onChange={e => setSort(e.target.value)}
-            style={{
-              fontSize: '0.75rem',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              padding: '0.4rem 0.75rem',
-              border: '1px solid var(--ml-border)',
-              borderRadius: '2px',
-              background: 'transparent',
-              color: 'var(--ml-text-mid)',
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-            }}
-          >
-            {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
-          </select>
-        </div>
+        )}
+
+        <p style={{ fontSize: '0.8125rem', color: 'var(--ml-text-mid)', marginTop: '1.5rem', letterSpacing: '0.04em' }}>
+          {visible.length} piece{visible.length !== 1 ? 's' : ''}
+        </p>
       </div>
 
       {/* Grid */}
@@ -146,12 +147,11 @@ export default function Collection({ collection, onProduct }) {
           ))}
         </div>
       ) : (
-        <div className="ml-shell" style={{ padding: '4rem 0', textAlign: 'center', color: 'var(--ml-text-mid)' }}>
+        <div style={{ padding: '4rem var(--ml-px)', textAlign: 'center', color: 'var(--ml-text-mid)' }}>
           No pieces match this filter.
         </div>
       )}
 
-      {/* Bottom spacer */}
       <div style={{ height: '4rem' }} />
     </div>
   );
