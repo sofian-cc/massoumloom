@@ -582,11 +582,43 @@ ul, ol { list-style: none; }
 }
 
 /* ── About page ─────────────────────────────────────────────────── */
-.ml-about-hero {
+.ml-about-hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100svh;
   overflow: hidden;
+}
+
+.ml-about-beliefs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.ml-about-two-col {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: clamp(2.5rem, 6vw, 8rem);
+  max-width: 90rem;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.ml-about-process-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 1px solid #E8E8E8;
+}
+
+.ml-about-process-step {
+  padding: 2.5rem 1.5rem 2.5rem 0;
+}
+
+.ml-about-process-step--border {
+  border-right: 1px solid #E8E8E8;
+  padding-right: 1.5rem;
 }
 
 /* ── Product page ───────────────────────────────────────────────── */
@@ -1482,11 +1514,13 @@ ul, ol { list-style: none; }
   .ml-about-content { grid-template-columns: 1fr; }
   .ml-about-specs__inner { grid-template-columns: repeat(2, 1fr); }
 
-  /* About page section grids */
-  .ml-about-hero { grid-template-columns: 1fr; min-height: auto; }
-  .ml-about-beliefs { grid-template-columns: repeat(2, 1fr) !important; }
-  .ml-about-two-col { grid-template-columns: 1fr !important; }
-  .ml-about-process { grid-template-columns: repeat(3, 1fr) !important; }
+  /* About page */
+  .ml-about-hero-grid { grid-template-columns: 1fr; min-height: auto; }
+  .ml-about-beliefs-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .ml-about-two-col { grid-template-columns: 1fr; gap: 2rem; }
+  .ml-about-process-grid { grid-template-columns: repeat(3, 1fr); }
+  .ml-about-process-step { padding: 1.5rem 1rem 1.5rem 0; }
+  .ml-about-process-step--border { padding-right: 1rem; }
 
   .ml-contact-page { grid-template-columns: 1fr; }
   .ml-contact-form-col { border-right: none; border-bottom: 1px solid var(--ml-border); }
@@ -1524,8 +1558,8 @@ ul, ol { list-style: none; }
   .ml-footer__bottom { flex-direction: column; text-align: center; }
 
   .ml-about-specs__inner { grid-template-columns: repeat(2, 1fr); }
-  .ml-about-beliefs { grid-template-columns: 1fr !important; }
-  .ml-about-process { grid-template-columns: repeat(2, 1fr) !important; }
+  .ml-about-beliefs-grid { grid-template-columns: 1fr; }
+  .ml-about-process-grid { grid-template-columns: repeat(2, 1fr); }
 
   .ml-collection-page__header { padding-top: 2rem; }
 
@@ -1541,5 +1575,6 @@ ul, ol { list-style: none; }
 @media (max-width: 480px) {
   .ml-grid { grid-template-columns: 1fr; }
   .ml-promise__inner { grid-template-columns: 1fr 1fr; }
-  .ml-about-process { grid-template-columns: 1fr !important; }
+  .ml-about-process-grid { grid-template-columns: 1fr; }
+  .ml-about-process-step--border { border-right: none; border-bottom: 1px solid #E8E8E8; padding-right: 0; padding-bottom: 1.5rem; }
 }

@@ -7,10 +7,10 @@ export default function About({ onContact }) {
     <div style={{ width: '100%' }}>
 
       {/* ── 1. Hero ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100svh', width: '100%', overflow: 'hidden' }}>
+      <div className="ml-about-hero-grid">
 
         {/* Image */}
-        <div style={{ position: 'relative', overflow: 'hidden', background: '#E8E6E0', minHeight: '60vmin' }}>
+        <div style={{ position: 'relative', overflow: 'hidden', background: '#E8E6E0', minHeight: '50vmin' }}>
           <img
             src="assets/hero copy.jpg"
             alt="Master weaver at the loom"
@@ -20,7 +20,7 @@ export default function About({ onContact }) {
         </div>
 
         {/* Text */}
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(4rem, 8vw, 8rem) clamp(3rem, 5vw, 6rem)', background: '#fff' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 'clamp(3rem, 7vw, 8rem) clamp(2rem, 5vw, 6rem)', background: '#fff' }}>
           <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#6B6B6B', marginBottom: '1.75rem' }}>Our story</p>
           <h1 style={{ fontFamily: serif, fontSize: 'clamp(2rem, 3.5vw, 3.5rem)', fontWeight: 300, lineHeight: 1.15, marginBottom: '2rem', color: '#0C0C0C' }}>
             From the looms of<br />
@@ -36,18 +36,18 @@ export default function About({ onContact }) {
       </div>
 
       {/* ── 2. What we believe ── */}
-      <div style={{ background: '#F5F5F5', padding: 'clamp(4rem, 8vw, 8rem) clamp(1.25rem, 5vw, 4rem)' }}>
-        <h2 style={{ fontFamily: serif, fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 300, textAlign: 'center', marginBottom: 'clamp(3rem, 6vw, 5rem)', color: '#0C0C0C' }}>
+      <div style={{ background: '#F5F5F5', padding: 'clamp(3rem, 7vw, 7rem) clamp(1.25rem, 5vw, 4rem)' }}>
+        <h2 style={{ fontFamily: serif, fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', fontWeight: 300, textAlign: 'center', marginBottom: 'clamp(2.5rem, 6vw, 5rem)', color: '#0C0C0C' }}>
           What we believe
         </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3rem', maxWidth: '90rem', margin: '0 auto' }}>
+        <div className="ml-about-beliefs-grid">
           {[
-            { heading: 'Rooted in tradition',    body: 'Every design draws on Central Asian weaving heritage, passed down through lived practice across generations.' },
-            { heading: 'Made for modern homes',  body: 'Reinterpreted for contemporary interiors. The patterns updated, the palettes considered, the proportions right.' },
-            { heading: 'Built from the floor',   body: 'A rug that earns its place as the starting point for every room. Not the last thing you choose, but the first.' },
+            { heading: 'Rooted in tradition',   body: 'Every design draws on Central Asian weaving heritage, passed down through lived practice across generations.' },
+            { heading: 'Made for modern homes', body: 'Reinterpreted for contemporary interiors. The patterns updated, the palettes considered, the proportions right.' },
+            { heading: 'Built from the floor',  body: 'A rug that earns its place as the starting point for every room. Not the last thing you choose, but the first.' },
           ].map(v => (
             <div key={v.heading}>
-              <div style={{ width: '2rem', height: '1px', background: '#6B6B6B', marginBottom: '1.5rem', opacity: 0.4 }} />
+              <div style={{ width: '2rem', height: '1px', background: '#6B6B6B', marginBottom: '1.25rem', opacity: 0.4 }} />
               <h3 style={{ fontFamily: serif, fontSize: '1.25rem', fontWeight: 400, marginBottom: '0.75rem', color: '#0C0C0C' }}>{v.heading}</h3>
               <p style={{ fontSize: '0.875rem', lineHeight: 1.75, color: '#6B6B6B' }}>{v.body}</p>
             </div>
@@ -56,11 +56,11 @@ export default function About({ onContact }) {
       </div>
 
       {/* ── 3. The Craft ── */}
-      <div style={{ background: '#fff', padding: 'clamp(4rem, 8vw, 8rem) clamp(1.25rem, 5vw, 4rem)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 'clamp(3rem, 6vw, 8rem)', maxWidth: '90rem', margin: '0 auto', alignItems: 'start' }}>
+      <div style={{ background: '#fff', padding: 'clamp(3rem, 7vw, 7rem) clamp(1.25rem, 5vw, 4rem)' }}>
+        <div className="ml-about-two-col">
           <div>
-            <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#6B6B6B', marginBottom: '1.5rem' }}>The craft</p>
-            <h2 style={{ fontFamily: serif, fontSize: 'clamp(2rem, 3vw, 2.75rem)', fontWeight: 300, lineHeight: 1.2, color: '#0C0C0C' }}>
+            <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#6B6B6B', marginBottom: '1.25rem' }}>The craft</p>
+            <h2 style={{ fontFamily: serif, fontSize: 'clamp(1.75rem, 3vw, 2.75rem)', fontWeight: 300, lineHeight: 1.2, color: '#0C0C0C' }}>
               Heritage designs,<br /><em>made for now.</em>
             </h2>
           </div>
@@ -76,11 +76,11 @@ export default function About({ onContact }) {
       </div>
 
       {/* ── 4. Philosophy ── */}
-      <div style={{ background: '#0C0C0C', padding: 'clamp(4rem, 8vw, 8rem) clamp(1.25rem, 5vw, 4rem)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 'clamp(3rem, 6vw, 8rem)', maxWidth: '90rem', margin: '0 auto', alignItems: 'start' }}>
+      <div style={{ background: '#0C0C0C', padding: 'clamp(3rem, 7vw, 7rem) clamp(1.25rem, 5vw, 4rem)' }}>
+        <div className="ml-about-two-col">
           <div>
-            <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '1.5rem' }}>The philosophy</p>
-            <h2 style={{ fontFamily: serif, fontSize: 'clamp(2rem, 3vw, 2.75rem)', fontWeight: 300, fontStyle: 'italic', lineHeight: 1.2, color: '#fff' }}>
+            <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '1.25rem' }}>The philosophy</p>
+            <h2 style={{ fontFamily: serif, fontSize: 'clamp(1.75rem, 3vw, 2.75rem)', fontWeight: 300, fontStyle: 'italic', lineHeight: 1.2, color: '#fff' }}>
               "Design from<br />the ground up."
             </h2>
           </div>
@@ -89,20 +89,20 @@ export default function About({ onContact }) {
               We believe a room is designed from the ground up. Not the walls, not the furniture, but the floor beneath it all. A rug is not a finishing touch. It is the foundation: the piece that anchors every other decision in the space.
             </p>
             <p style={{ fontSize: '0.9375rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.6)' }}>
-              The right rug pulls a room together precisely because it carries so much within it: colour, texture, pattern, warmth. Our collection is designed with that in mind — a breadth of tones and designs wide enough to meet a room wherever it is, and bring it exactly where it needs to go.
+              The right rug pulls a room together precisely because it carries so much within it: colour, texture, pattern, warmth. Our collection is designed with that in mind.
             </p>
           </div>
         </div>
       </div>
 
       {/* ── 5. Process ── */}
-      <div style={{ background: '#fff', padding: 'clamp(4rem, 8vw, 8rem) clamp(1.25rem, 5vw, 4rem)' }}>
+      <div style={{ background: '#fff', padding: 'clamp(3rem, 7vw, 7rem) clamp(1.25rem, 5vw, 4rem)' }}>
         <div style={{ maxWidth: '90rem', margin: '0 auto' }}>
           <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: '#6B6B6B', marginBottom: '0.75rem' }}>Process</p>
-          <h2 style={{ fontFamily: serif, fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 300, marginBottom: '3rem', color: '#0C0C0C' }}>
+          <h2 style={{ fontFamily: serif, fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', fontWeight: 300, marginBottom: '2.5rem', color: '#0C0C0C' }}>
             From cartoon to carpet
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', borderTop: '1px solid #E8E8E8' }}>
+          <div className="ml-about-process-grid">
             {[
               { num: '01', label: 'Design',    time: '2–4 weeks',  desc: 'Archival research and hand-drawn cartoon.' },
               { num: '02', label: 'Dyeing',    time: '2–3 weeks',  desc: 'Natural pigments mordanted onto hand-spun wool.' },
@@ -110,14 +110,10 @@ export default function About({ onContact }) {
               { num: '04', label: 'Finishing', time: '3–4 weeks',  desc: 'Washing, stretching, trimming, and inspection.' },
               { num: '05', label: 'Delivery',  time: '1–2 weeks',  desc: 'White-glove delivery to your door.' },
             ].map((step, i) => (
-              <div key={step.num} style={{
-                padding: '2.5rem 1.5rem 2.5rem 0',
-                paddingRight: i < 4 ? '1.5rem' : 0,
-                borderRight: i < 4 ? '1px solid #E8E8E8' : 'none',
-              }}>
-                <p style={{ fontFamily: serif, fontSize: '2.5rem', fontWeight: 300, color: '#E8E8E8', lineHeight: 1, marginBottom: '2.5rem' }}>{step.num}</p>
+              <div key={step.num} className={`ml-about-process-step${i < 4 ? ' ml-about-process-step--border' : ''}`}>
+                <p style={{ fontFamily: serif, fontSize: '2.5rem', fontWeight: 300, color: '#E8E8E8', lineHeight: 1, marginBottom: '2rem' }}>{step.num}</p>
                 <p style={{ fontSize: '0.9375rem', fontWeight: 500, marginBottom: '0.4rem', color: '#0C0C0C' }}>{step.label}</p>
-                <p style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#444444', marginBottom: '0.75rem' }}>{step.time}</p>
+                <p style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#444', marginBottom: '0.6rem' }}>{step.time}</p>
                 <p style={{ fontSize: '0.8125rem', lineHeight: 1.65, color: '#6B6B6B' }}>{step.desc}</p>
               </div>
             ))}
@@ -126,11 +122,11 @@ export default function About({ onContact }) {
       </div>
 
       {/* ── 6. CTA ── */}
-      <div style={{ background: '#F5F5F5', padding: 'clamp(4rem, 8vw, 6rem) clamp(1.25rem, 5vw, 4rem)', textAlign: 'center' }}>
+      <div style={{ background: '#F5F5F5', padding: 'clamp(3rem, 7vw, 6rem) clamp(1.25rem, 5vw, 4rem)', textAlign: 'center' }}>
         <h2 style={{ fontFamily: serif, fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 300, marginBottom: '1rem', color: '#0C0C0C' }}>
           Interested in a piece?
         </h2>
-        <p style={{ fontSize: '0.9375rem', color: '#6B6B6B', lineHeight: 1.75, marginBottom: '2rem', maxWidth: '46ch', margin: '0 auto 2rem' }}>
+        <p style={{ fontSize: '0.9375rem', color: '#6B6B6B', lineHeight: 1.75, maxWidth: '46ch', margin: '0 auto 2rem' }}>
           Every rug in our collection is available to enquire about. We respond to all messages within 48 hours.
         </p>
         <button className="ml-btn ml-btn--primary" onClick={onContact}>Get in touch →</button>
