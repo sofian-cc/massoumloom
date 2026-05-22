@@ -1,5 +1,5 @@
-import React from 'react';
-import { getProduct } from '../data/products.js';
+import React, { useState } from 'react';
+import { getProduct, getImages } from '../data/products.js';
 
 function SpecRow({ label, value }) {
   if (!value) return null;
@@ -13,6 +13,9 @@ function SpecRow({ label, value }) {
 
 export default function Product({ handle, onCollection, onContact, onBack }) {
   const product = getProduct(handle);
+  const [tab, setTab] = useState('details');
+  const images = product ? getImages(product) : [];
+  const [activeImg, setActiveImg] = useState(0);
 
   if (!product) {
     return (
@@ -30,20 +33,35 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
   const sizeStr = `${longer} × ${shorter} cm`;
   const collectionLabel = product.collection === 'heritage' ? 'Heritage' : 'Modern';
 
-  const enquireSubject = encodeURIComponent(`Enquiry — Massoum Loom ${product.title} (${product.sku})`);
+  const enquireSubject = encodeURIComponent(`Enquiry: Massoum Loom ${product.title} (${product.sku})`);
 
   return (
     <div>
       <div className="ml-product-page">
-        {/* Image */}
+        {/* Image gallery */}
         <div className="ml-product-page__image-col">
           <img
-            src={product.image}
-            alt={`${product.title} — ${product.fieldColour} ${collectionLabel} rug, ${sizeStr}`}
+            key={images[activeImg]}
+            src={images[activeImg]}
+            alt={`${product.title}, ${product.fieldColour} ${collectionLabel} rug, ${sizeStr}`}
             loading="eager"
             width="800"
             height="1067"
           />
+          {images.length > 1 && (
+            <div className="ml-product-page__thumbs">
+              {images.map((src, i) => (
+                <button
+                  key={i}
+                  className={`ml-product-page__thumb${i === activeImg ? ' ml-product-page__thumb--active' : ''}`}
+                  onClick={() => setActiveImg(i)}
+                  aria-label={`View image ${i + 1}`}
+                >
+                  <img src={src} alt="" loading="lazy" />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Details */}
@@ -77,29 +95,54 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
 
           <hr className="ml-product-page__divider" />
 
-          {/* Specs */}
-          <div className="ml-product-page__specs">
-            <p className="ml-product-page__specs-title">Details</p>
+          {/* Tabs */}
+          <div className="ml-tabs">
+            <div className="ml-tabs__nav">
+              {['details', 'delivery', 'care'].map(t => (
+                <button
+                  key={t}
+                  className={`ml-tabs__btn${tab === t ? ' ml-tabs__btn--active' : ''}`}
+                  onClick={() => setTab(t)}
+                >
+                  {t.charAt(0).toUpperCase() + t.slice(1)}
+                </button>
+              ))}
+            </div>
 
-            <SpecRow label="Reference" value={product.sku} />
-            <SpecRow label="Collection" value={collectionLabel} />
-            <SpecRow label="Size" value={sizeStr} />
-            <SpecRow label="Origin" value={`${product.province}, ${product.origin}`} />
-            <SpecRow label="Pile" value={product.pile} />
-            {product.knotDensity && <SpecRow label="Knot density" value={product.knotDensity} />}
-            <SpecRow label="Field colour" value={product.fieldColour} />
-            <SpecRow label="Border colour" value={product.borderColour} />
-            {product.motifs && <SpecRow label="Motifs" value={product.motifs} />}
+            {tab === 'details' && (
+              <div className="ml-tabs__panel">
+                <SpecRow label="Reference" value={product.sku} />
+                <SpecRow label="Collection" value={collectionLabel} />
+                <SpecRow label="Size" value={sizeStr} />
+                <SpecRow label="Origin" value={`${product.province}, ${product.origin}`} />
+                <SpecRow label="Pile" value={product.pile} />
+                {product.knotDensity && <SpecRow label="Knot density" value={product.knotDensity} />}
+                <SpecRow label="Field colour" value={product.fieldColour} />
+                <SpecRow label="Border colour" value={product.borderColour} />
+                {product.motifs && <SpecRow label="Motifs" value={product.motifs} />}
+                <p style={{ marginTop: '1.25rem', fontStyle: 'italic', fontSize: '0.8125rem' }}>
+                  Hand-knotted in north-west Afghanistan by master weavers using traditional
+                  vertical looms, pure wool pile, and techniques unchanged for centuries.
+                </p>
+              </div>
+            )}
+
+            {tab === 'delivery' && (
+              <div className="ml-tabs__panel">
+                <p>All pieces are made to order and delivered worldwide at no extra charge. We use insured specialist art couriers with full tracking and white-glove handling.</p>
+                <p>Estimated delivery: 6–10 months from order confirmation, depending on weaving complexity and current studio queue.</p>
+                <p>We will keep you updated throughout the process and send photographs at key stages.</p>
+              </div>
+            )}
+
+            {tab === 'care' && (
+              <div className="ml-tabs__panel">
+                <p>Rotate your rug every 6–12 months to ensure even wear, particularly in high-traffic areas.</p>
+                <p>Vacuum regularly on a low setting, always in the direction of the pile. Avoid vacuuming the fringe.</p>
+                <p>Blot spills immediately with a clean, dry cloth. Do not rub. For deep cleaning, we recommend our sister business Carpets Clinic, based in the same studio.</p>
+              </div>
+            )}
           </div>
-
-          <hr className="ml-product-page__divider" />
-
-          {/* Provenance note */}
-          <p style={{ fontSize: '0.8125rem', color: 'var(--ml-text-mid)', lineHeight: 1.7, fontStyle: 'italic' }}>
-            Hand-knotted in the Jowzjan province of northern Afghanistan by master
-            weavers using traditional vertical looms, pure wool pile, and techniques
-            unchanged for centuries.
-          </p>
         </div>
       </div>
     </div>

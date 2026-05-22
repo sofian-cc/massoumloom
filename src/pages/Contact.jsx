@@ -39,7 +39,7 @@ export default function Contact() {
         setError('Something went wrong. Please email us directly or call 020 8191 7488.');
       }
     } catch {
-      setError('Could not send — please call 020 8191 7488 or email us directly.');
+      setError('Could not send. Please call 020 8191 7488 or email us directly.');
     }
 
     setSending(false);
@@ -126,7 +126,7 @@ export default function Contact() {
                 required
                 value={form.message}
                 onChange={set('message')}
-                placeholder="Tell us what you're looking for — which piece caught your eye, the room it's for, any questions about the rug."
+                placeholder="Tell us what you're looking for, which piece caught your eye, the room it's for, any questions about the rug."
               />
             </div>
 
@@ -158,7 +158,7 @@ export default function Contact() {
             Unit B2, 1 Chandos Road<br />
             London, NW10 6NF
           </p>
-          <p className="ml-contact-block__note">By appointment — please call ahead.</p>
+          <p className="ml-contact-block__note">By appointment. Please call ahead.</p>
         </div>
 
         <div>
@@ -185,7 +185,7 @@ export default function Contact() {
               Carpets Clinic ↗
             </a>
           </p>
-          <p className="ml-contact-block__note">Specialist rug cleaning, repair & restoration — same studio.</p>
+          <p className="ml-contact-block__note">Specialist rug cleaning, repair &amp; restoration, same studio.</p>
         </div>
       </div>
     </div>

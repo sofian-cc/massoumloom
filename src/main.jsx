@@ -25,17 +25,18 @@ function setHash(h) {
 }
 
 const PAGE_TITLES = {
-  home:       'Massoum Loom — Handwoven Afghan Rugs',
-  collection: (slug) => `${slug === 'heritage' ? 'Heritage' : 'Modern'} Collection — Massoum Loom`,
-  product:    (title) => `${title} — Massoum Loom`,
-  about:      'About — Massoum Loom',
-  contact:    'Contact — Massoum Loom',
+  home:       'Massoum Loom | Handwoven Afghan Rugs',
+  collection: (slug) => `${slug === 'heritage' ? 'Heritage' : 'Modern'} Collection | Massoum Loom`,
+  product:    (title) => `${title} | Massoum Loom`,
+  about:      'About | Massoum Loom',
+  contact:    'Contact | Massoum Loom',
 };
 
 /* ── Nav ──────────────────────────────────────────────────────────── */
 function Nav({ route, go }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = React.useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -43,6 +44,17 @@ function Nav({ route, go }) {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', onClickOutside);
+    return () => document.removeEventListener('mousedown', onClickOutside);
+  }, [menuOpen]);
 
   const nav = (hash) => { setHash(hash); setMenuOpen(false); };
 
@@ -52,7 +64,7 @@ function Nav({ route, go }) {
   };
 
   return (
-    <header className={`ml-nav${scrolled ? ' ml-nav--scrolled' : ''}`} role="banner">
+    <header className={`ml-nav${scrolled ? ' ml-nav--scrolled' : ''}`} role="banner" ref={menuRef}>
       <div className="ml-nav__inner">
         <button className="ml-nav__logo" onClick={() => nav('home')} aria-label="Massoum Loom home">
           <img src="assets/MASSOUM LOOM LOGO.JPG" alt="Massoum Loom" className="ml-nav__logo-img" />
@@ -97,7 +109,11 @@ function Footer({ go }) {
     <footer className="ml-footer">
       <div className="ml-footer__inner">
         <div className="ml-footer__brand">
-          <p className="ml-footer__name">MASSOUM LOOM</p>
+          <img
+            src="assets/MASSOUM LOOM LOGO.JPG"
+            alt="Massoum Loom"
+            style={{ height: '48px', width: 'auto', filter: 'invert(1)', marginBottom: '1rem', display: 'block' }}
+          />
           <p className="ml-footer__tagline">
             Handwoven rugs from Afghanistan.<br />Made to order. Delivered worldwide.
           </p>
@@ -145,6 +161,36 @@ function Footer({ go }) {
         </a>
       </div>
     </footer>
+  );
+}
+
+/* ── Scroll to top ────────────────────────────────────────────────── */
+function ScrollToTop() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 600);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  if (!visible) return null;
+  return (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      aria-label="Back to top"
+      style={{
+        position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 90,
+        width: '44px', height: '44px', borderRadius: '50%',
+        background: 'var(--ml-accent)', color: '#fff',
+        fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.18)',
+        cursor: 'pointer', border: 'none',
+        transition: 'background 0.2s, transform 0.2s',
+      }}
+      onMouseEnter={e => e.currentTarget.style.background = 'var(--ml-bg-dark)'}
+      onMouseLeave={e => e.currentTarget.style.background = 'var(--ml-accent)'}
+    >
+      ↑
+    </button>
   );
 }
 
@@ -197,6 +243,7 @@ function App() {
         </Suspense>
       </main>
       <Footer go={go} />
+      <ScrollToTop />
     </>
   );
 }

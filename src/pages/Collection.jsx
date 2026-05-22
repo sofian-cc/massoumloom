@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { getCollection } from '../data/products.js';
+import { getCollection, getImages } from '../data/products.js';
 
 function ProductCard({ product, onClick }) {
   const w = product.width;
@@ -19,8 +19,8 @@ function ProductCard({ product, onClick }) {
     >
       <div className="ml-card__image-wrap">
         <img
-          src={product.image}
-          alt={`${product.title} — ${product.fieldColour} rug from ${product.province}, ${product.origin}`}
+          src={getImages(product)[0]}
+          alt={`${product.title}, ${product.fieldColour} rug from ${product.province}, ${product.origin}`}
           loading="lazy"
           width="400"
           height="533"
@@ -54,23 +54,37 @@ function colourGroup(fc) {
   return 'Other';
 }
 
+const SORT_OPTIONS = [
+  { value: 'featured', label: 'Featured' },
+  { value: 'size-asc',  label: 'Size: Small to Large' },
+  { value: 'size-desc', label: 'Size: Large to Small' },
+];
+
+function area(p) { return (p.width || 0) * (p.length || 0); }
+
 export default function Collection({ collection, onProduct }) {
   const all = useMemo(() => getCollection(collection), [collection]);
   const [filter, setFilter] = useState('All');
+  const [sort, setSort] = useState('featured');
 
-  const visible = filter === 'All' ? all : all.filter(p => colourGroup(p.fieldColour) === filter);
+  const visible = useMemo(() => {
+    let list = filter === 'All' ? all : all.filter(p => colourGroup(p.fieldColour) === filter);
+    if (sort === 'size-asc')  list = [...list].sort((a, b) => area(a) - area(b));
+    if (sort === 'size-desc') list = [...list].sort((a, b) => area(b) - area(a));
+    return list;
+  }, [all, filter, sort]);
 
   const label = collection === 'heritage' ? 'Heritage' : 'Modern';
   const desc  = collection === 'heritage'
-    ? 'Classic Jowzjan compositions in rich jewel-toned fields. Shah Abbasi medallions, arabesque borders, and centuries of craft.'
-    : 'Contemporary palettes and quieter geometries — the same mastery, a different mood.';
+    ? 'Classic compositions in rich jewel-toned fields. Shah Abbasi medallions, arabesque borders, and centuries of craft.'
+    : 'Contemporary palettes and quieter geometries, the same mastery, a different mood.';
 
   return (
     <div>
       {/* Header */}
       <div className="ml-shell">
         <div className="ml-collection-page__header">
-          <p className="ml-collection-page__eyebrow">Afghanistan · Jowzjan Province</p>
+          <p className="ml-collection-page__eyebrow">Afghanistan · North-West</p>
           <h1 className="ml-collection-page__title">{label}</h1>
           <p style={{ color: 'var(--ml-text-mid)', maxWidth: '52ch', lineHeight: 1.7, fontSize: '0.9375rem', marginBottom: '1.5rem' }}>
             {desc}
@@ -78,29 +92,49 @@ export default function Collection({ collection, onProduct }) {
           <p className="ml-collection-page__count">{visible.length} piece{visible.length !== 1 ? 's' : ''}</p>
         </div>
 
-        {/* Colour filter */}
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
-          {COLOUR_GROUPS.map(g => (
-            <button
-              key={g}
-              onClick={() => setFilter(g)}
-              style={{
-                fontSize: '0.75rem',
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                padding: '0.4rem 0.9rem',
-                border: '1px solid',
-                borderRadius: '2px',
-                borderColor: filter === g ? 'var(--ml-accent)' : 'var(--ml-border)',
-                background: filter === g ? 'var(--ml-accent)' : 'transparent',
-                color: filter === g ? '#fff' : 'var(--ml-text-mid)',
-                transition: 'all 0.2s',
-                cursor: 'pointer',
-              }}
-            >
-              {g}
-            </button>
-          ))}
+        {/* Filters + sort row */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            {COLOUR_GROUPS.map(g => (
+              <button
+                key={g}
+                onClick={() => setFilter(g)}
+                style={{
+                  fontSize: '0.75rem',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  padding: '0.4rem 0.9rem',
+                  border: '1px solid',
+                  borderRadius: '2px',
+                  borderColor: filter === g ? 'var(--ml-accent)' : 'var(--ml-border)',
+                  background: filter === g ? 'var(--ml-accent)' : 'transparent',
+                  color: filter === g ? '#fff' : 'var(--ml-text-mid)',
+                  transition: 'all 0.2s',
+                  cursor: 'pointer',
+                }}
+              >
+                {g}
+              </button>
+            ))}
+          </div>
+          <select
+            value={sort}
+            onChange={e => setSort(e.target.value)}
+            style={{
+              fontSize: '0.75rem',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              padding: '0.4rem 0.75rem',
+              border: '1px solid var(--ml-border)',
+              borderRadius: '2px',
+              background: 'transparent',
+              color: 'var(--ml-text-mid)',
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+            }}
+          >
+            {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+          </select>
         </div>
       </div>
 
