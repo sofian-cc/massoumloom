@@ -48,6 +48,24 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
             width="800"
             height="1067"
           />
+
+          {/* Prev / Next arrows */}
+          {images.length > 1 && (
+            <>
+              <button
+                className="ml-product-page__arrow ml-product-page__arrow--prev"
+                onClick={() => setActiveImg(i => (i - 1 + images.length) % images.length)}
+                aria-label="Previous image"
+              >‹</button>
+              <button
+                className="ml-product-page__arrow ml-product-page__arrow--next"
+                onClick={() => setActiveImg(i => (i + 1) % images.length)}
+                aria-label="Next image"
+              >›</button>
+            </>
+          )}
+
+          {/* Thumbnail strip */}
           {images.length > 1 && (
             <div className="ml-product-page__thumbs">
               {images.map((src, i) => (
@@ -56,9 +74,8 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
                   className={`ml-product-page__thumb${i === activeImg ? ' ml-product-page__thumb--active' : ''}`}
                   onClick={() => setActiveImg(i)}
                   aria-label={`View image ${i + 1}`}
-                >
-                  <img src={src} alt="" loading="eager" />
-                </button>
+                  style={{ backgroundImage: `url("${src.replace(/"/g, '%22')}")` }}
+                />
               ))}
             </div>
           )}

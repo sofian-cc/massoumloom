@@ -5,7 +5,7 @@ export default function About({ onContact }) {
     <>
 
       {/* ── Section 1: Hero split ── */}
-      <section className="ml-about-hero" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100svh', width: '100%' }}>
+      <section className="ml-about-hero">
         <div style={{ overflow: 'hidden', background: '#E8E6E0' }}>
           <img
             src="assets/hero copy.jpg"
