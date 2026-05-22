@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function About({ onContact }) {
   return (
-    <div>
+    <>
 
       {/* ── Section 1: Hero split ── */}
       <section className="ml-about-hero" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100svh', width: '100%' }}>
@@ -124,6 +124,6 @@ export default function About({ onContact }) {
         </div>
       </section>
 
-    </div>
+    </>
   );
 }
