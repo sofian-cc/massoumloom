@@ -90,41 +90,6 @@ export default function Home({ onCollection, onProduct, onAbout }) {
         </div>
       </div>
 
-      {/* ── Dark intro band ── */}
-      <div className="ml-intro-band">
-        <div className="ml-intro-band__inner">
-          <div>
-            <h2 className="ml-intro-band__heading">
-              80–120 knots per square inch.<br />
-              <em style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic' }}>
-                A lifetime of craft in every piece.
-              </em>
-            </h2>
-            <p className="ml-intro-band__body">
-              Our rugs are woven on traditional vertical looms by artisans whose families
-              have practised this craft for generations. Pure wool pile, vegetable-derived
-              dyes, asymmetric Persian knot, the same methods unchanged for centuries.
-            </p>
-            <button className="ml-btn ml-btn--outline" style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.4)' }} onClick={() => onCollection('heritage')}>
-              Explore Heritage →
-            </button>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-            {[
-              ['71', 'Pieces in the collection'],
-              ['80–120', 'Knots per sq. inch'],
-              ['100%', 'Natural wool pile'],
-              ['6–10', 'Months lead time'],
-            ].map(([n, l]) => (
-              <div key={l}>
-                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 3vw, 2.75rem)', fontWeight: 300, color: '#fff', lineHeight: 1, marginBottom: '0.4rem' }}>{n}</p>
-                <p style={{ fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>{l}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* ── Brand story strip ── */}
       <div className="ml-story">
         <div className="ml-story__inner">
@@ -192,6 +157,41 @@ export default function Home({ onCollection, onProduct, onAbout }) {
           ))}
         </div>
       </section>
+
+      {/* ── Dark intro band ── */}
+      <div className="ml-intro-band">
+        <div className="ml-intro-band__inner">
+          <div>
+            <h2 className="ml-intro-band__heading">
+              80–120 knots per square inch.<br />
+              <em style={{ fontFamily: 'Cormorant Garamond, serif', fontStyle: 'italic' }}>
+                A lifetime of craft in every piece.
+              </em>
+            </h2>
+            <p className="ml-intro-band__body">
+              Our rugs are woven on traditional vertical looms by artisans whose families
+              have practised this craft for generations. Pure wool pile, vegetable-derived
+              dyes, asymmetric Persian knot, the same methods unchanged for centuries.
+            </p>
+            <button className="ml-btn ml-btn--outline" style={{ color: '#fff', borderColor: 'rgba(255,255,255,0.4)' }} onClick={() => onCollection('heritage')}>
+              Explore Heritage →
+            </button>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+            {[
+              ['71', 'Pieces in the collection'],
+              ['80–120', 'Knots per sq. inch'],
+              ['100%', 'Natural wool pile'],
+              ['6–10', 'Months lead time'],
+            ].map(([n, l]) => (
+              <div key={l}>
+                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(2rem, 3vw, 2.75rem)', fontWeight: 300, color: '#fff', lineHeight: 1, marginBottom: '0.4rem' }}>{n}</p>
+                <p style={{ fontSize: '0.78rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>{l}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* ── Featured pieces ── */}
       <section className="ml-section" style={{ background: '#fff', paddingInline: 0 }} aria-label="Featured pieces">

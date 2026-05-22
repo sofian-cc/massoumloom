@@ -5,7 +5,7 @@ export default function About({ onContact }) {
     <div>
 
       {/* ── Section 1: Hero split ── */}
-      <section className="ml-about-hero" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100svh' }}>
+      <section className="ml-about-hero" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '100svh', width: '100%' }}>
         <div style={{ overflow: 'hidden', background: '#E8E6E0' }}>
           <img
             src="assets/hero copy.jpg"
@@ -113,8 +113,8 @@ export default function About({ onContact }) {
               { num: '04', label: 'Finishing', time: '3–4 weeks',   desc: 'Washing, stretching, trimming, and inspection.' },
               { num: '05', label: 'Delivery',  time: '1–2 weeks',   desc: 'White-glove delivery to your door, worldwide.' },
             ].map((step, i) => (
-              <div key={step.num} style={{ padding: '2rem 1.5rem 2rem 0', borderRight: i < 4 ? '1px solid var(--ml-border)' : 'none', paddingRight: i < 4 ? '1.5rem' : 0 }}>
-                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.5rem', fontWeight: 300, color: 'var(--ml-border)', lineHeight: 1, marginBottom: '1.25rem' }}>{step.num}</p>
+              <div key={step.num} style={{ padding: '2.5rem 1.5rem 2.5rem 0', borderRight: i < 4 ? '1px solid var(--ml-border)' : 'none', paddingRight: i < 4 ? '1.5rem' : 0 }}>
+                <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2.5rem', fontWeight: 300, color: 'var(--ml-border)', lineHeight: 1, marginBottom: '2.5rem' }}>{step.num}</p>
                 <p style={{ fontSize: '0.9375rem', fontWeight: 500, marginBottom: '0.4rem' }}>{step.label}</p>
                 <p style={{ fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ml-accent-2)', marginBottom: '0.75rem' }}>{step.time}</p>
                 <p style={{ fontSize: '0.8125rem', lineHeight: 1.65, color: 'var(--ml-text-mid)' }}>{step.desc}</p>

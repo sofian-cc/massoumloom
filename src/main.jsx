@@ -8,9 +8,13 @@ const Product    = lazy(() => import('./pages/Product.jsx'));
 const About      = lazy(() => import('./pages/About.jsx'));
 const Contact    = lazy(() => import('./pages/Contact.jsx'));
 const SimplePage = lazy(() => import('./pages/SimplePage.jsx'));
+const Bespoke    = lazy(() => import('./pages/Bespoke.jsx'));
+const Trade      = lazy(() => import('./pages/Trade.jsx'));
+const Journal    = lazy(() => import('./pages/Journal.jsx'));
+const SizeGuide  = lazy(() => import('./pages/SizeGuide.jsx'));
 
 /* ── Hash router ──────────────────────────────────────────────────── */
-const SIMPLE_PAGES = new Set(['bespoke', 'sustainability', 'press', 'delivery', 'care-guide', 'returns']);
+const SIMPLE_PAGES = new Set(['sustainability', 'press', 'delivery', 'care-guide', 'returns']);
 
 function parseHash() {
   const raw = window.location.hash.replace(/^#\/?/, '').trim();
@@ -20,6 +24,10 @@ function parseHash() {
   if (raw === 'modern')        return { page: 'collection', slug: 'modern' };
   if (raw === 'about')         return { page: 'about',      slug: null };
   if (raw === 'contact')       return { page: 'contact',    slug: null };
+  if (raw === 'bespoke')       return { page: 'bespoke',    slug: null };
+  if (raw === 'trade')         return { page: 'trade',      slug: null };
+  if (raw === 'journal')       return { page: 'journal',    slug: null };
+  if (raw === 'size-guide')    return { page: 'size-guide', slug: null };
   if (raw.startsWith('rug/'))  return { page: 'product',    slug: raw.slice(4) };
   if (SIMPLE_PAGES.has(raw))   return { page: 'simple',     slug: raw };
   return { page: 'home', slug: null };
@@ -119,12 +127,14 @@ function Footer() {
           <button onClick={() => nav('heritage')}>Heritage</button>
           <button onClick={() => nav('modern')}>Modern</button>
           <button onClick={() => nav('bespoke')}>Bespoke</button>
+          <button onClick={() => nav('trade')}>Trade</button>
         </div>
 
         {/* Company */}
         <div className="ml-footer__col">
           <p className="ml-footer__col-title">Company</p>
           <button onClick={() => nav('about')}>About</button>
+          <button onClick={() => nav('journal')}>Journal</button>
           <button onClick={() => nav('sustainability')}>Sustainability</button>
           <button onClick={() => nav('press')}>Press</button>
         </div>
@@ -133,6 +143,7 @@ function Footer() {
         <div className="ml-footer__col">
           <p className="ml-footer__col-title">Help</p>
           <button onClick={() => nav('contact')}>Contact</button>
+          <button onClick={() => nav('size-guide')}>Size guide</button>
           <button onClick={() => nav('delivery')}>Delivery</button>
           <button onClick={() => nav('care-guide')}>Care guide</button>
           <button onClick={() => nav('returns')}>Returns</button>
@@ -217,9 +228,13 @@ function App() {
               onBack={() => window.history.back()}
             />
           )}
-          {route.page === 'about'   && <About onContact={() => go('contact')} />}
-          {route.page === 'contact' && <Contact enquiry={enquiry} onClearEnquiry={() => setEnquiry(null)} />}
-          {route.page === 'simple'  && <SimplePage page={route.slug} onContact={() => go('contact')} />}
+          {route.page === 'about'      && <About onContact={() => go('contact')} />}
+          {route.page === 'contact'    && <Contact enquiry={enquiry} onClearEnquiry={() => setEnquiry(null)} />}
+          {route.page === 'bespoke'    && <Bespoke onContact={() => go('contact')} />}
+          {route.page === 'trade'      && <Trade />}
+          {route.page === 'journal'    && <Journal />}
+          {route.page === 'size-guide' && <SizeGuide onContact={() => go('contact')} />}
+          {route.page === 'simple'     && <SimplePage page={route.slug} onContact={() => go('contact')} />}
         </Suspense>
       </main>
       <Footer />
