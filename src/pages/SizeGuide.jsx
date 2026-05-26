@@ -29,13 +29,13 @@ export default function SizeGuide({ onContact }) {
 
       {/* Size table */}
       <div style={{ marginBottom: 'clamp(3rem, 6vw, 5rem)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr 1.5fr 2fr', borderBottom: '1px solid var(--ml-border)', paddingBottom: '0.75rem', marginBottom: '0.5rem' }}>
+        <div className="ml-size-table-header">
           {['Size', 'Dimensions', 'Best for', 'Styling rule'].map(h => (
             <p key={h} style={{ fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ml-text-mid)' }}>{h}</p>
           ))}
         </div>
         {SIZES.map(s => (
-          <div key={s.label} style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr 1.5fr 2fr', padding: '1.25rem 0', borderBottom: '1px solid var(--ml-border)' }}>
+          <div key={s.label} className="ml-size-table-row">
             <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '1.125rem', fontWeight: 400 }}>{s.label}</p>
             <p style={{ fontSize: '0.875rem', color: 'var(--ml-text)' }}>{s.dims}</p>
             <p style={{ fontSize: '0.875rem', color: 'var(--ml-text-mid)' }}>{s.rooms}</p>

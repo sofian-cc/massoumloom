@@ -85,7 +85,7 @@ export default function Trade() {
 
       {/* Application form */}
       <div style={{ background: 'var(--ml-bg)', padding: 'clamp(4rem, 8vw, 6rem) var(--ml-px)' }}>
-        <div style={{ maxWidth: 'var(--ml-shell)', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(3rem, 6vw, 8rem)', alignItems: 'start' }}>
+        <div style={{ maxWidth: 'var(--ml-shell)', margin: '0 auto' }} className="ml-form-two-col">
           <div>
             <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ml-text-mid)', marginBottom: '1rem' }}>Apply</p>
             <h2 style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 300, lineHeight: 1.2, marginBottom: '1.25rem' }}>
@@ -104,7 +104,7 @@ export default function Trade() {
               </div>
             ) : (
               <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div className="ml-form-row-two">
                   <div style={fieldStyle}>
                     <label style={labelStyle}>Name *</label>
                     <input required style={inputStyle} value={form.name} onChange={set('name')} placeholder="Full name" />

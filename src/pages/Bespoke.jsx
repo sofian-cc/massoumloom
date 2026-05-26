@@ -77,9 +77,9 @@ export default function Bespoke({ onContact }) {
       {/* Process */}
       <div style={{ background: 'var(--ml-white)', padding: 'clamp(3rem, 6vw, 5rem) var(--ml-px)' }}>
         <div style={{ maxWidth: 'var(--ml-shell)', margin: '0 auto' }}>
-          <div className="ml-about-process" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', borderTop: '1px solid var(--ml-border)' }}>
+          <div className="ml-bespoke-process">
             {STEPS.map((s, i) => (
-              <div key={s.num} style={{ padding: '2rem 1.5rem 2rem 0', borderRight: i < 4 ? '1px solid var(--ml-border)' : 'none', paddingRight: i < 4 ? '1.5rem' : 0 }}>
+              <div key={s.num} className={`ml-bespoke-step${i < 4 ? ' ml-bespoke-step--border' : ''}`}>
                 <p style={{ fontFamily: 'Cormorant Garamond, serif', fontSize: '2rem', fontWeight: 300, color: 'var(--ml-border)', lineHeight: 1, marginBottom: '2rem' }}>{s.num}</p>
                 <p style={{ fontSize: '0.875rem', fontWeight: 500, marginBottom: '0.4rem' }}>{s.label}</p>
                 <p style={{ fontSize: '0.8125rem', lineHeight: 1.65, color: 'var(--ml-text-mid)' }}>{s.desc}</p>
@@ -91,7 +91,7 @@ export default function Bespoke({ onContact }) {
 
       {/* Form */}
       <div style={{ background: 'var(--ml-bg)', padding: 'clamp(4rem, 8vw, 6rem) var(--ml-px)' }}>
-        <div style={{ maxWidth: 'var(--ml-shell)', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(3rem, 6vw, 8rem)', alignItems: 'start' }}>
+        <div style={{ maxWidth: 'var(--ml-shell)', margin: '0 auto' }} className="ml-form-two-col">
 
           <div>
             <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ml-text-mid)', marginBottom: '1rem' }}>Start your brief</p>
@@ -115,7 +115,7 @@ export default function Bespoke({ onContact }) {
             ) : (
               <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
                 {/* Contact */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div className="ml-form-row-two">
                   <div style={fieldStyle}>
                     <label style={labelStyle}>Name *</label>
                     <input required style={inputStyle} value={form.name} onChange={set('name')} placeholder="Full name" />
@@ -152,7 +152,7 @@ export default function Bespoke({ onContact }) {
                   <label style={labelStyle}>Design preferences</label>
                   <input style={inputStyle} value={form.motifs} onChange={set('motifs')} placeholder="e.g. Traditional medallion, geometric, minimal" />
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                <div className="ml-form-row-two">
                   <div style={fieldStyle}>
                     <label style={labelStyle}>Timeline</label>
                     <select style={{ ...inputStyle, cursor: 'pointer' }} value={form.timeline} onChange={set('timeline')}>
