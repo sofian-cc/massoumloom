@@ -1,5 +1,5 @@
 import React from 'react';
-import { getFeatured, getImages } from '../data/products.js';
+import { getFeatured, getImages, imgUrl } from '../data/products.js';
 
 function ProductCard({ product, onClick }) {
   const w = product.width;
@@ -13,11 +13,12 @@ function ProductCard({ product, onClick }) {
     >
       <div className="ml-card__image-wrap">
         <img
-          src={getImages(product)[0]}
+          src={imgUrl(getImages(product)[0], 600)}
           alt={`${product.title}, ${product.fieldColour} ${product.collection} rug`}
           loading="lazy"
           width="400"
           height="533"
+          decoding="async"
         />
       </div>
       <div className="ml-card__info">
@@ -59,9 +60,10 @@ export default function Home({ onCollection, onProduct, onAbout }) {
         </div>
         <div className="ml-hero__image-col">
           <img
-            src="assets/belgravia-hero.png"
+            src={imgUrl('assets/belgravia-hero.png', 1400)}
             alt="Massoum Loom rug in a Belgravia living room"
             loading="eager"
+            fetchpriority="high"
             width="1080"
             height="1080"
             style={{ objectPosition: 'center center' }}

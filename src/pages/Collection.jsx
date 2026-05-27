@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { products, getImages } from '../data/products.js';
+import { products, getImages, imgUrl } from '../data/products.js';
 
 function ProductCard({ product, onClick }) {
   const w = product.width;
@@ -19,11 +19,12 @@ function ProductCard({ product, onClick }) {
     >
       <div className="ml-card__image-wrap">
         <img
-          src={getImages(product)[0]}
+          src={imgUrl(getImages(product)[0], 600)}
           alt={`${product.title}`}
           loading="lazy"
           width="400"
           height="533"
+          decoding="async"
         />
       </div>
       <div className="ml-card__info">

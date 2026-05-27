@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getProduct, getImages } from '../data/products.js';
+import { getProduct, getImages, imgUrl } from '../data/products.js';
 
 function SpecRow({ label, value }) {
   if (!value) return null;
@@ -42,9 +42,10 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
         <div className="ml-product-page__image-col">
           <img
             key={images[activeImg]}
-            src={images[activeImg]}
+            src={imgUrl(images[activeImg], 1200)}
             alt={`${product.title}, ${product.fieldColour} ${collectionLabel} rug, ${sizeStr}`}
             loading="eager"
+            fetchpriority="high"
             width="800"
             height="1067"
           />
@@ -74,7 +75,7 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
                   className={`ml-product-page__thumb${i === activeImg ? ' ml-product-page__thumb--active' : ''}`}
                   onClick={() => setActiveImg(i)}
                   aria-label={`View image ${i + 1}`}
-                  style={{ backgroundImage: `url("${src.replace(/"/g, '%22')}")` }}
+                  style={{ backgroundImage: `url("${imgUrl(src, 120).replace(/"/g, '%22')}")` }}
                 />
               ))}
             </div>

@@ -11,6 +11,19 @@ const LOCAL_SERIALS = new Set([
   105,107,109,
 ]);
 
+/**
+ * Routes an image path through Netlify Image CDN in production.
+ * Automatically serves AVIF/WebP to supported browsers, resizes to `width`.
+ * Falls back to the raw path in development (where /.netlify/images isn't available).
+ */
+export function imgUrl(src, width) {
+  if (!import.meta.env.PROD) return src;
+  const path = src.startsWith('/') ? src : '/' + src;
+  const params = new URLSearchParams({ url: path, fm: 'auto', q: '80' });
+  if (width) params.set('w', String(width));
+  return `/.netlify/images?${params}`;
+}
+
 export function getImages(product) {
   const match = product.title.match(/No\.\s*(\d+)/);
   if (match) {
