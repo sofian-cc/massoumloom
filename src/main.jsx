@@ -13,27 +13,32 @@ const Trade      = lazy(() => import('./pages/Trade.jsx'));
 const Journal    = lazy(() => import('./pages/Journal.jsx'));
 const SizeGuide  = lazy(() => import('./pages/SizeGuide.jsx'));
 
-/* ── Hash router ──────────────────────────────────────────────────── */
+/* ── Path router ──────────────────────────────────────────────────── */
 const SIMPLE_PAGES = new Set(['sustainability', 'press', 'delivery', 'care-guide', 'returns']);
 
-function parseHash() {
-  const raw = window.location.hash.replace(/^#\/?/, '').trim();
-  if (!raw || raw === 'home')  return { page: 'home',       slug: null };
-  if (raw === 'collection')    return { page: 'collection', slug: 'all' };
-  if (raw === 'heritage')      return { page: 'collection', slug: 'heritage' };
-  if (raw === 'modern')        return { page: 'collection', slug: 'modern' };
-  if (raw === 'about')         return { page: 'about',      slug: null };
-  if (raw === 'contact')       return { page: 'contact',    slug: null };
-  if (raw === 'bespoke')       return { page: 'bespoke',    slug: null };
-  if (raw === 'trade')         return { page: 'trade',      slug: null };
-  if (raw === 'journal')       return { page: 'journal',    slug: null };
-  if (raw === 'size-guide')    return { page: 'size-guide', slug: null };
-  if (raw.startsWith('rug/'))  return { page: 'product',    slug: raw.slice(4) };
-  if (SIMPLE_PAGES.has(raw))   return { page: 'simple',     slug: raw };
+function parsePath() {
+  const raw = window.location.pathname.replace(/^\/+/, '').replace(/\/+$/, '');
+  if (!raw)                   return { page: 'home',       slug: null };
+  if (raw === 'collection')   return { page: 'collection', slug: 'all' };
+  if (raw === 'heritage')     return { page: 'collection', slug: 'heritage' };
+  if (raw === 'modern')       return { page: 'collection', slug: 'modern' };
+  if (raw === 'about')        return { page: 'about',      slug: null };
+  if (raw === 'contact')      return { page: 'contact',    slug: null };
+  if (raw === 'bespoke')      return { page: 'bespoke',    slug: null };
+  if (raw === 'trade')        return { page: 'trade',      slug: null };
+  if (raw === 'journal')      return { page: 'journal',    slug: null };
+  if (raw === 'size-guide')   return { page: 'size-guide', slug: null };
+  if (raw.startsWith('rug/')) return { page: 'product',    slug: raw.slice(4) };
+  if (SIMPLE_PAGES.has(raw))  return { page: 'simple',     slug: raw };
   return { page: 'home', slug: null };
 }
 
-function setHash(h) { window.location.hash = h; }
+// Module-level navigate so Nav and Footer can call it without prop drilling
+function navigate(path) {
+  const url = (!path || path === 'home') ? '/' : '/' + path;
+  window.history.pushState({}, '', url);
+  window.dispatchEvent(new CustomEvent('ml-navigate'));
+}
 
 /* ── Nav ──────────────────────────────────────────────────────────── */
 function Nav() {
@@ -57,12 +62,12 @@ function Nav() {
     return () => document.removeEventListener('mousedown', onClickOutside);
   }, [menuOpen]);
 
-  const nav = (hash) => { setHash(hash); setMenuOpen(false); };
+  const nav = (path) => { navigate(path); setMenuOpen(false); };
 
-  const isActive = (hashes) => {
-    const h = window.location.hash.replace(/^#\/?/, '');
-    return (Array.isArray(hashes) ? hashes : [hashes]).some(hash =>
-      h === hash || (hash === 'home' && (!h || h === 'home'))
+  const isActive = (paths) => {
+    const p = window.location.pathname.replace(/^\/+/, '').replace(/\/+$/, '');
+    return (Array.isArray(paths) ? paths : [paths]).some(path =>
+      p === path || (path === 'home' && p === '')
     );
   };
 
@@ -70,7 +75,7 @@ function Nav() {
     <header className={`ml-nav${scrolled ? ' ml-nav--scrolled' : ''}`} role="banner" ref={menuRef}>
       <div className="ml-nav__inner">
         <button className="ml-nav__logo" onClick={() => nav('home')} aria-label="Massoum Loom home">
-          <img src="assets/logo-1776629483547.JPG" alt="Massoum Loom" className="ml-nav__logo-img" />
+          <img src="/assets/logo-1776629483547.JPG" alt="Massoum Loom" className="ml-nav__logo-img" />
         </button>
 
         <nav className="ml-nav__links" aria-label="Main navigation">
@@ -98,7 +103,7 @@ function Nav() {
 
 /* ── Footer ───────────────────────────────────────────────────────── */
 function Footer() {
-  const nav = (hash) => { setHash(hash); window.scrollTo({ top: 0, behavior: 'instant' }); };
+  const nav = (path) => { navigate(path); window.scrollTo({ top: 0, behavior: 'instant' }); };
 
   return (
     <footer className="ml-footer">
@@ -107,7 +112,7 @@ function Footer() {
         {/* Brand */}
         <div className="ml-footer__brand">
           <img
-            src="assets/logo-1776629483547.JPG"
+            src="/assets/logo-1776629483547.JPG"
             alt="Massoum Loom"
             style={{ height: '40px', width: 'auto', filter: 'invert(1)', marginBottom: '1.25rem', display: 'block', mixBlendMode: 'normal' }}
           />
@@ -116,7 +121,7 @@ function Footer() {
           </p>
           <a href="https://www.instagram.com/massoumloom" className="ml-footer__instagram"
             target="_blank" rel="noopener noreferrer">
-            @MASSOULOOM
+            @MASSOUMLOOM
           </a>
         </div>
 
@@ -188,19 +193,30 @@ function ScrollToTop() {
 
 /* ── App ──────────────────────────────────────────────────────────── */
 function App() {
-  const [route, setRoute] = useState(parseHash());
+  const [route, setRoute] = useState(parsePath());
   const [enquiry, setEnquiry] = useState(null);
 
   useEffect(() => {
-    const onHashChange = () => {
-      setRoute(parseHash());
+    // ml-navigate: fired by navigate() for in-app links (Nav, Footer, go())
+    const onNavigate = () => setRoute(parsePath());
+    // popstate: fired by browser back/forward buttons
+    const onPopState = () => {
+      setRoute(parsePath());
       window.scrollTo({ top: 0, behavior: 'instant' });
     };
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
+    window.addEventListener('ml-navigate', onNavigate);
+    window.addEventListener('popstate', onPopState);
+    return () => {
+      window.removeEventListener('ml-navigate', onNavigate);
+      window.removeEventListener('popstate', onPopState);
+    };
   }, []);
 
-  const go = (hash) => { setHash(hash); window.scrollTo({ top: 0, behavior: 'instant' }); };
+  const go = (path) => {
+    navigate(path);
+    setRoute(parsePath());
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
 
   return (
     <>

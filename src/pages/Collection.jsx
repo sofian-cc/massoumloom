@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { products, getImages, imgUrl } from '../data/products.js';
+import useSEO from '../useSEO.js';
 
 function ProductCard({ product, onClick }) {
   const w = product.width;
@@ -50,8 +51,16 @@ function colourGroup(fc) {
 
 function area(p) { return (p.width || 0) * (p.length || 0); }
 
+const SEO_MAP = {
+  all:      { title: 'Collection — Massoum Loom | Handwoven Afghan Rugs', description: 'Browse 71 handwoven Afghan rugs. Heritage pieces with centuries of Central Asian tradition alongside contemporary modern designs.', path: '/collection' },
+  heritage: { title: 'Heritage Collection — Massoum Loom | Traditional Afghan Rugs', description: 'Traditional handwoven Afghan rugs with centuries of Central Asian heritage. Wool pile, vegetable-dyed, 80–120 KPSI.', path: '/heritage' },
+  modern:   { title: 'Modern Collection — Massoum Loom | Contemporary Afghan Rugs', description: 'Contemporary handwoven Afghan rugs blending centuries of craft tradition with modern interior design sensibility.', path: '/modern' },
+};
+
 export default function Collection({ initialCollection = 'all', onProduct }) {
   const [collFilter, setCollFilter] = useState(initialCollection);
+  const seo = SEO_MAP[collFilter] || SEO_MAP.all;
+  useSEO(seo);
   const [colourFilter, setColourFilter] = useState('All');
   const [sort, setSort] = useState('featured');
 

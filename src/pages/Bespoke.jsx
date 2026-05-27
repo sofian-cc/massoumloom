@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useSEO from '../useSEO.js';
 
 const WEB3FORMS_KEY = 'cbc2591a-7490-4ed1-accf-2b5ad6386a2b';
 
@@ -11,6 +12,11 @@ const STEPS = [
 ];
 
 export default function Bespoke({ onContact }) {
+  useSEO({
+    title: 'Bespoke Rugs — Commission a Hand-Knotted Rug | Massoum Loom',
+    description: 'Commission a handwoven Afghan rug made exactly to your specifications — size, colour palette, motif, and material. 6–10 month lead time. London studio.',
+    path: '/bespoke',
+  });
   const [form, setForm] = useState({
     name: '', email: '', phone: '',
     roomType: '', size: '', colours: '', motifs: '', timeline: '', budget: '', notes: '',
@@ -39,8 +45,13 @@ export default function Bespoke({ onContact }) {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST', headers: { Accept: 'application/json' }, body: data,
       });
-      if (res.ok) setSubmitted(true);
-      else setError('Something went wrong. Please email us directly.');
+      if (res.ok) {
+        setSubmitted(true);
+        // Google Ads / GA4 conversion event — bespoke brief is a high-value lead
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'generate_lead', form_type: 'bespoke_commission', value: 1, currency: 'GBP' });
+        if (typeof window.gtag === 'function') window.gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXXX/LABEL', value: 1, currency: 'GBP' });
+      } else setError('Something went wrong. Please email us directly.');
     } catch {
       setError('Could not send. Please call 020 8191 7488.');
     }

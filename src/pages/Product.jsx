@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getProduct, getImages, imgUrl } from '../data/products.js';
+import useSEO from '../useSEO.js';
 
 function SpecRow({ label, value }) {
   if (!value) return null;
@@ -17,6 +18,46 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
   const images = product ? getImages(product) : [];
   const [activeImg, setActiveImg] = useState(0);
 
+  const w = product?.width;
+  const l = product?.length;
+  const longer  = w && l ? Math.max(w, l) : null;
+  const shorter = w && l ? Math.min(w, l) : null;
+  const sizeStr = longer ? `${longer} × ${shorter} cm` : 'Dimensions on request';
+  const collectionLabel = product?.collection === 'heritage' ? 'Heritage' : 'Modern';
+
+  const productLd = product ? {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    '@id': `https://massoumloom.com/rug/${product.handle}`,
+    'name': `Massoum Loom ${product.title}`,
+    'description': `Hand-knotted ${product.pile || 'wool'} rug from ${product.province || product.origin || 'Afghanistan'}. ${product.knotDensity || '80–120 KPSI'}. Field colour: ${product.fieldColour}. ${sizeStr}.`,
+    'image': images.map(src => `https://massoumloom.com/${src}`),
+    'brand': { '@type': 'Brand', 'name': 'Massoum Loom' },
+    'material': product.pile || 'Wool',
+    'offers': {
+      '@type': 'Offer',
+      'availability': 'https://schema.org/InStock',
+      'priceCurrency': 'GBP',
+      'seller': { '@type': 'Organization', 'name': 'Massoum Loom', 'url': 'https://massoumloom.com' },
+    },
+    'additionalProperty': [
+      { '@type': 'PropertyValue', 'name': 'Origin', 'value': product.origin },
+      product.province && { '@type': 'PropertyValue', 'name': 'Province', 'value': product.province },
+      { '@type': 'PropertyValue', 'name': 'Pile', 'value': product.pile },
+      { '@type': 'PropertyValue', 'name': 'Knot density', 'value': product.knotDensity },
+      { '@type': 'PropertyValue', 'name': 'Field colour', 'value': product.fieldColour },
+      product.borderColour && { '@type': 'PropertyValue', 'name': 'Border colour', 'value': product.borderColour },
+      longer && { '@type': 'PropertyValue', 'name': 'Dimensions', 'value': sizeStr },
+    ].filter(Boolean),
+  } : null;
+
+  useSEO(product ? {
+    title: `${product.title} — Hand-Knotted ${product.pile || 'Wool'} Rug | Massoum Loom`,
+    description: `Hand-knotted ${product.pile || 'wool'} rug from ${product.province || product.origin}. ${product.knotDensity}. ${product.fieldColour} field. ${sizeStr}. ${collectionLabel} collection.`,
+    path: `/rug/${product.handle}`,
+    jsonLd: productLd,
+  } : { title: 'Massoum Loom', description: '' });
+
   if (!product) {
     return (
       <div className="ml-shell" style={{ padding: '6rem 0', textAlign: 'center' }}>
@@ -25,13 +66,6 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
       </div>
     );
   }
-
-  const w = product.width;
-  const l = product.length;
-  const longer  = w && l ? Math.max(w, l) : null;
-  const shorter = w && l ? Math.min(w, l) : null;
-  const sizeStr = longer ? `${longer} × ${shorter} cm` : 'Dimensions on request';
-  const collectionLabel = product.collection === 'heritage' ? 'Heritage' : 'Modern';
 
   const enquireSubject = encodeURIComponent(`Enquiry: Massoum Loom ${product.title} (${product.sku})`);
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useSEO from '../useSEO.js';
 
 const ARTICLES = [
   {
@@ -82,6 +83,11 @@ const ARTICLES = [
 ];
 
 function ArticleList({ onArticle }) {
+  useSEO({
+    title: 'Journal — Massoum Loom | Notes on Rugs & Interiors',
+    description: 'Buying guides, care advice, and perspectives on hand-knotted rugs and Central Asian craft from the Massoum Loom studio.',
+    path: '/journal',
+  });
   return (
     <div style={{ maxWidth: 'var(--ml-shell)', margin: '0 auto', padding: 'clamp(4rem, 8vw, 8rem) var(--ml-px)' }}>
       <p style={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ml-text-mid)', marginBottom: '1rem' }}>Journal</p>
@@ -111,6 +117,21 @@ function ArticleList({ onArticle }) {
 
 function ArticleView({ slug, onBack }) {
   const article = ARTICLES.find(a => a.slug === slug);
+  useSEO(article ? {
+    title: `${article.title} — Massoum Loom Journal`,
+    description: article.intro,
+    path: `/journal/${article.slug}`,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      'headline': article.title,
+      'description': article.intro,
+      'author': { '@type': 'Organization', 'name': 'Massoum Loom', 'url': 'https://massoumloom.com' },
+      'publisher': { '@type': 'Organization', 'name': 'Massoum Loom', 'url': 'https://massoumloom.com' },
+      'datePublished': article.date,
+      'mainEntityOfPage': { '@type': 'WebPage', '@id': `https://massoumloom.com/journal/${article.slug}` },
+    },
+  } : { title: 'Journal — Massoum Loom', description: '', path: '/journal' });
   if (!article) return null;
 
   return (

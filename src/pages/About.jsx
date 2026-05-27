@@ -1,8 +1,14 @@
 import React from 'react';
+import useSEO from '../useSEO.js';
 
 const serif = 'Cormorant Garamond, serif';
 
 export default function About({ onContact }) {
+  useSEO({
+    title: 'Our Story — Massoum Loom | Afghan Rug Specialists, London',
+    description: 'Massoum Loom is a London-based specialist in handwoven Afghan rugs. Central Asian heritage, vegetable-dyed wool, 80–120 KPSI. Our story, our craft, our vision.',
+    path: '/about',
+  });
   return (
     <div style={{ width: '100%' }}>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { getFeatured, getImages, imgUrl } from '../data/products.js';
+import useSEO from '../useSEO.js';
 
 function ProductCard({ product, onClick }) {
   const w = product.width;
@@ -32,6 +33,11 @@ function ProductCard({ product, onClick }) {
 }
 
 export default function Home({ onCollection, onProduct, onAbout }) {
+  useSEO({
+    title: 'Massoum Loom — Handwoven Afghan Rugs, London',
+    description: 'Handwoven Afghan rugs with centuries of Central Asian heritage, reinterpreted for the modern interior. Heritage and modern collections. Free London delivery.',
+    path: '/',
+  });
   const featured = getFeatured(6);
 
   return (

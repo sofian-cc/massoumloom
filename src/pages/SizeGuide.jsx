@@ -1,4 +1,5 @@
 import React from 'react';
+import useSEO from '../useSEO.js';
 
 const SIZES = [
   { label: 'Small', dims: 'Up to 120 × 80 cm', rooms: 'Hallway, bathroom, beside a bed', tip: 'Ideal as an accent piece. Sits under a coffee table with legs off the rug.' },
@@ -14,7 +15,45 @@ const RULES = [
   { heading: 'Hallway', body: 'Runner proportions: typically 60–90 cm wide and as long as the hall allows. Leave 10–15 cm of floor visible on each side.' },
 ];
 
+const FAQ_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': [
+    {
+      '@type': 'Question',
+      'name': 'What size rug should I choose for a living room?',
+      'acceptedAnswer': { '@type': 'Answer', 'text': 'For a sofa-and-chairs arrangement, aim for all front legs on the rug, or all four legs on the rug. The rug should extend at least 30–45 cm beyond the sofa on each side. A 230 × 300 cm rug suits most living rooms.' },
+    },
+    {
+      '@type': 'Question',
+      'name': 'What size rug do I need for a dining table?',
+      'acceptedAnswer': { '@type': 'Answer', 'text': 'The rug should be large enough that chairs remain on it when pulled out. Add at least 60 cm to the table length and width — so a 180 × 90 cm dining table needs a 300 × 210 cm rug.' },
+    },
+    {
+      '@type': 'Question',
+      'name': 'What size rug should I put in a bedroom?',
+      'acceptedAnswer': { '@type': 'Answer', 'text': 'A rug that extends 45–60 cm on three sides of the bed (both sides and the foot) creates a warm, grounded feel. For a king bed, this means at least 240 × 300 cm.' },
+    },
+    {
+      '@type': 'Question',
+      'name': 'What width should a hallway runner rug be?',
+      'acceptedAnswer': { '@type': 'Answer', 'text': 'Runner proportions: typically 60–90 cm wide and as long as the hall allows. Leave 10–15 cm of floor visible on each side.' },
+    },
+    {
+      '@type': 'Question',
+      'name': 'What is the most common rug-buying mistake?',
+      'acceptedAnswer': { '@type': 'Answer', 'text': 'The most common mistake when buying a rug is choosing one that is too small. A rug that is the right size anchors a room; one that is too small makes it feel unfinished.' },
+    },
+  ],
+};
+
 export default function SizeGuide({ onContact }) {
+  useSEO({
+    title: 'Rug Size Guide — How to Choose the Right Size | Massoum Loom',
+    description: 'How to choose the right rug size for living rooms, dining rooms, bedrooms, and hallways. Expert guidance from Massoum Loom, London rug specialists.',
+    path: '/size-guide',
+    jsonLd: FAQ_LD,
+  });
   return (
     <div style={{ maxWidth: 'var(--ml-shell)', margin: '0 auto', padding: 'clamp(4rem, 8vw, 8rem) var(--ml-px)' }}>
 

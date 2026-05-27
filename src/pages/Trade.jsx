@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useSEO from '../useSEO.js';
 
 const WEB3FORMS_KEY = 'cbc2591a-7490-4ed1-accf-2b5ad6386a2b';
 
@@ -12,6 +13,11 @@ const BENEFITS = [
 ];
 
 export default function Trade() {
+  useSEO({
+    title: 'Trade Programme — Massoum Loom | Interior Designers & Architects',
+    description: 'The Massoum Loom trade programme offers interior designers and architects preferential pricing, priority access, sample loans, and a dedicated bespoke service.',
+    path: '/trade',
+  });
   const [form, setForm] = useState({
     name: '', email: '', phone: '', company: '', website: '', discipline: '', notes: '',
   });
@@ -38,8 +44,13 @@ export default function Trade() {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST', headers: { Accept: 'application/json' }, body: data,
       });
-      if (res.ok) setSubmitted(true);
-      else setError('Something went wrong. Please email us directly.');
+      if (res.ok) {
+        setSubmitted(true);
+        // Google Ads / GA4 conversion event
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'generate_lead', form_type: 'trade_application' });
+        if (typeof window.gtag === 'function') window.gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXXX/LABEL' });
+      } else setError('Something went wrong. Please email us directly.');
     } catch {
       setError('Could not send. Please call 020 8191 7488.');
     }

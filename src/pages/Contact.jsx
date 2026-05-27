@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+import useSEO from '../useSEO.js';
 
 const WEB3FORMS_KEY = 'cbc2591a-7490-4ed1-accf-2b5ad6386a2b';
 
 export default function Contact({ enquiry, onClearEnquiry }) {
+  useSEO({
+    title: 'Contact — Massoum Loom | Enquire About a Rug',
+    description: 'Get in touch with Massoum Loom. Enquire about a piece from our collection, ask about bespoke commissions, or visit our London studio.',
+    path: '/contact',
+  });
   const defaultSubject = enquiry ? `Enquiry: ${enquiry.title} (${enquiry.sku})` : '';
   const defaultMessage = enquiry
     ? `I am interested in ${enquiry.title}.\n\nPiece details:\n- Reference: ${enquiry.sku}\n- Collection: ${enquiry.collection === 'heritage' ? 'Heritage' : 'Modern'}${enquiry.width && enquiry.length ? `\n- Size: ${Math.max(enquiry.width, enquiry.length)} × ${Math.min(enquiry.width, enquiry.length)} cm` : ''}${enquiry.fieldColour ? `\n- Field colour: ${enquiry.fieldColour}` : ''}\n\nPlease send me more information on pricing and availability.`
@@ -38,6 +44,10 @@ export default function Contact({ enquiry, onClearEnquiry }) {
       if (res.ok) {
         setSubmitted(true);
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Google Ads / GA4 conversion event
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'generate_lead', form_type: 'contact' });
+        if (typeof window.gtag === 'function') window.gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXXX/LABEL' });
       } else {
         setError('Something went wrong. Please email us directly or call 020 8191 7488.');
       }
