@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SITE = 'https://massoumloom.com';
+const SITE = 'https://massoumloom.co.uk';
 
 /**
  * Sets per-page SEO metadata: document.title, meta description,

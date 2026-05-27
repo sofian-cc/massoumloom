@@ -126,10 +126,10 @@ function ArticleView({ slug, onBack }) {
       '@type': 'Article',
       'headline': article.title,
       'description': article.intro,
-      'author': { '@type': 'Organization', 'name': 'Massoum Loom', 'url': 'https://massoumloom.com' },
-      'publisher': { '@type': 'Organization', 'name': 'Massoum Loom', 'url': 'https://massoumloom.com' },
+      'author': { '@type': 'Organization', 'name': 'Massoum Loom', 'url': 'https://massoumloom.co.uk' },
+      'publisher': { '@type': 'Organization', 'name': 'Massoum Loom', 'url': 'https://massoumloom.co.uk' },
       'datePublished': article.date,
-      'mainEntityOfPage': { '@type': 'WebPage', '@id': `https://massoumloom.com/journal/${article.slug}` },
+      'mainEntityOfPage': { '@type': 'WebPage', '@id': `https://massoumloom.co.uk/journal/${article.slug}` },
     },
   } : { title: 'Journal — Massoum Loom', description: '', path: '/journal' });
   if (!article) return null;

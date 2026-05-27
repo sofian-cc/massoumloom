@@ -3,144 +3,144 @@
 
   <!-- Core pages -->
   <url>
-    <loc>https://massoumloom.com/</loc>
+    <loc>https://massoumloom.co.uk/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/collection</loc>
+    <loc>https://massoumloom.co.uk/collection</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/heritage</loc>
+    <loc>https://massoumloom.co.uk/heritage</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/modern</loc>
+    <loc>https://massoumloom.co.uk/modern</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/about</loc>
+    <loc>https://massoumloom.co.uk/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/bespoke</loc>
+    <loc>https://massoumloom.co.uk/bespoke</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/trade</loc>
+    <loc>https://massoumloom.co.uk/trade</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/journal</loc>
+    <loc>https://massoumloom.co.uk/journal</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/size-guide</loc>
+    <loc>https://massoumloom.co.uk/size-guide</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/contact</loc>
+    <loc>https://massoumloom.co.uk/contact</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/delivery</loc>
+    <loc>https://massoumloom.co.uk/delivery</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/care-guide</loc>
+    <loc>https://massoumloom.co.uk/care-guide</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://massoumloom.com/returns</loc>
+    <loc>https://massoumloom.co.uk/returns</loc>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
 
   <!-- Heritage collection — 42 rugs -->
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-001</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-002</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-003</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-006</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-008</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-010</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-018</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-019</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-020</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-021</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-022</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-023</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-024</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-025</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-026</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-029</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-030</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-031</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-032</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-033</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-034</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-038</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-040</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-044</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-047</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-054</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-055</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-056</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-057</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-058</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-059</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-060</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-065</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-067</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-069</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-070</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-072</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-073</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-074</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-095</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-096</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-109</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-001</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-002</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-003</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-006</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-008</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-010</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-018</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-019</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-020</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-021</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-022</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-023</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-024</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-025</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-026</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-029</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-030</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-031</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-032</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-033</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-034</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-038</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-040</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-044</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-047</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-054</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-055</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-056</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-057</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-058</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-059</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-060</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-065</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-067</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-069</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-070</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-072</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-073</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-074</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-095</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-096</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-109</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Modern collection — 29 rugs -->
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-005</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-007</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-011</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-013</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-015</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-016</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-017</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-027</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-028</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-036</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-037</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-066</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-075</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-076</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-077</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-079</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-080</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-081</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-082</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-083</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-084</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-085</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-086</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-087</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-088</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-089</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-091</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-105</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://massoumloom.com/rug/wl-hk-035-107</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-005</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-007</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-011</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-013</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-015</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-016</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-017</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-027</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-028</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-036</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-037</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-066</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-075</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-076</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-077</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-079</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-080</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-081</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-082</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-083</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-084</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-085</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-086</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-087</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-088</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-089</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-091</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-105</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://massoumloom.co.uk/rug/wl-hk-035-107</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
 </urlset>

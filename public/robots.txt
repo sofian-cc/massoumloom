@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://massoumloom.com/sitemap.xml
+Sitemap: https://massoumloom.co.uk/sitemap.xml

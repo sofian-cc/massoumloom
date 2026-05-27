@@ -28,17 +28,17 @@ export default function Product({ handle, onCollection, onContact, onBack }) {
   const productLd = product ? {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    '@id': `https://massoumloom.com/rug/${product.handle}`,
+    '@id': `https://massoumloom.co.uk/rug/${product.handle}`,
     'name': `Massoum Loom ${product.title}`,
     'description': `Hand-knotted ${product.pile || 'wool'} rug from ${product.province || product.origin || 'Afghanistan'}. ${product.knotDensity || '80–120 KPSI'}. Field colour: ${product.fieldColour}. ${sizeStr}.`,
-    'image': images.map(src => `https://massoumloom.com/${src}`),
+    'image': images.map(src => `https://massoumloom.co.uk/${src}`),
     'brand': { '@type': 'Brand', 'name': 'Massoum Loom' },
     'material': product.pile || 'Wool',
     'offers': {
       '@type': 'Offer',
       'availability': 'https://schema.org/InStock',
       'priceCurrency': 'GBP',
-      'seller': { '@type': 'Organization', 'name': 'Massoum Loom', 'url': 'https://massoumloom.com' },
+      'seller': { '@type': 'Organization', 'name': 'Massoum Loom', 'url': 'https://massoumloom.co.uk' },
     },
     'additionalProperty': [
       { '@type': 'PropertyValue', 'name': 'Origin', 'value': product.origin },
