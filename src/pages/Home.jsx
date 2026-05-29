@@ -112,7 +112,7 @@ export default function Home({ onCollection, onProduct, onAbout }) {
           </div>
           <div className="ml-story__image">
             <img
-              src="assets/mayfair-after copy.jpg"
+              src="/assets/mayfair-after copy.jpg"
               alt="Massoum Loom rug in a Mayfair home"
               loading="lazy"
             />

@@ -12,16 +12,13 @@ const LOCAL_SERIALS = new Set([
 ]);
 
 /**
- * Routes an image path through Netlify Image CDN in production.
- * Automatically serves AVIF/WebP to supported browsers, resizes to `width`.
- * Falls back to the raw path in development (where /.netlify/images isn't available).
+ * Ensures the image path is absolute (starts with /).
+ * This prevents broken images when rendering on non-root routes.
  */
-export function imgUrl(src, width) {
-  if (!import.meta.env.PROD) return src;
-  const path = src.startsWith('/') ? src : '/' + src;
-  const params = new URLSearchParams({ url: path, fm: 'auto', q: '80' });
-  if (width) params.set('w', String(width));
-  return `/.netlify/images?${params}`;
+export function imgUrl(src, _width) {
+  if (!src) return src;
+  if (src.startsWith('http') || src.startsWith('/')) return src;
+  return '/' + src;
 }
 
 export function getImages(product) {

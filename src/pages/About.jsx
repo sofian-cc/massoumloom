@@ -18,7 +18,7 @@ export default function About({ onContact }) {
         {/* Image */}
         <div style={{ position: 'relative', overflow: 'hidden', background: '#E8E6E0', minHeight: '50vmin' }}>
           <img
-            src="assets/hero copy.jpg"
+            src="/assets/hero copy.jpg"
             alt="Master weaver at the loom"
             loading="eager"
             className="ml-about-hero-img"
